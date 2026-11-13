@@ -1,0 +1,99 @@
+<?php
+/**
+ * OMNIWIRE MEDIA - UNIFIED TEMPLATE HEADER (v12.1 HOTFIX)
+ */
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+$siteBrandTitle = 'OmniWire Media';
+$siteBrandDesc = 'Global News & Trend Intelligence';
+$basePrefix = isset($basePrefix) ? $basePrefix : '';
+$safeTitle = htmlspecialchars(strip_tags($pageTitle ?? ($siteBrandTitle . ' - ' . $siteBrandDesc)), ENT_QUOTES, 'UTF-8');
+?>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?= $safeTitle ?></title>
+  
+  <!-- FAVICON & BRANDING (v12.1) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <link rel="shortcut icon" href="<?= $basePrefix ?>/static/images/favicon.svg">
+  <link rel="apple-touch-icon" href="<?= $basePrefix ?>/static/images/favicon.svg">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- TAILWIND & CUSTOM ENGINE CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="<?= $basePrefix ?>/static/css/bundle.min.css?v=12.1">
+  <link rel="stylesheet" href="<?= $basePrefix ?>/static/css/custom.css?v=12.1">
+  <style>
+    .aspect-video { aspect-ratio: 16 / 9 !important; width: 100% !important; overflow: hidden !important; }
+    .aspect-video > img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; }
+    .line-clamp-2 { display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important; }
+    .bg-slate-900\/60 { background-color: rgba(15, 23, 42, 0.6) !important; }
+    .bg-slate-950 { background-color: #020617 !important; }
+    .mt-16 { margin-top: 4rem !important; }
+    .pt-12 { padding-top: 3rem !important; }
+    .pb-8 { padding-bottom: 2rem !important; }
+    .mb-12 { margin-bottom: 3rem !important; }
+  </style>
+
+  <!-- LUCIDE ICONS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#070A0F] text-slate-100 flex flex-col min-h-screen antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="relative z-50 bg-slate-900/90 border-b border-slate-800 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="<?= $basePrefix ?>/" class="flex items-center gap-3 group" aria-label="<?= htmlspecialchars($siteBrandTitle) ?>">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-300">
+          <i data-lucide="globe" class="w-5 h-5 text-slate-950 stroke-[2.5]"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-black text-xl sm:text-2xl tracking-tight text-white">
+            Omni<span class="text-emerald-500">Wire</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-widest font-extrabold text-slate-400 -mt-1">
+            Media Intelligence
+          </span>
+        </div>
+      </a>
+
+      <!-- NAVIGATION LINKS -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-300">
+        <a href="<?= $basePrefix ?>/category/ai-tech" class="hover:text-emerald-400 transition">AI &amp; Tech</a>
+        <a href="<?= $basePrefix ?>/category/cybersecurity" class="hover:text-emerald-400 transition">Cybersecurity</a>
+        <a href="<?= $basePrefix ?>/category/digital-business" class="hover:text-emerald-400 transition">Digital Business</a>
+        <a href="<?= $basePrefix ?>/category/finance-crypto" class="hover:text-emerald-400 transition">Finance</a>
+        <a href="<?= $basePrefix ?>/category/sports" class="hover:text-emerald-400 transition">Sports</a>
+        <a href="<?= $basePrefix ?>/category/health-wellness" class="hover:text-emerald-400 transition">Health</a>
+      </nav>
+
+      <!-- CTA BUTTON -->
+      <div class="flex items-center gap-3">
+        <a href="<?= $basePrefix ?>/write-for-us" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-md shadow-emerald-950/20 transition flex items-center gap-1.5 cursor-pointer">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Write for Us
+        </a>
+      </div>
+    </div>
+  </header>

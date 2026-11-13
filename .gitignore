@@ -1,0 +1,13 @@
+# Large zip archives and temp files
+*.zip
+*.tar.gz
+temp_*
+backups_nov06/
+scratch/
+news_portal.db
+
+# OS files
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/

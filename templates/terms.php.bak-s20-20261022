@@ -1,0 +1,47 @@
+<?php
+/**
+ * OmniWire Media - Terms of Publication & Use
+ * Target File: templates/terms.php
+ */
+?>
+<div class="max-w-3xl mx-auto space-y-8 animate-fade-in-up">
+  <div class="border-b border-slate-800 pb-6">
+    <span class="text-xs font-bold uppercase tracking-wider text-emerald-500 block mb-2">Editorial Governance &amp; Legal</span>
+    <h1 class="text-3xl sm:text-4xl font-serif font-extrabold text-white">Terms of Publication &amp; Use</h1>
+    <p class="text-xs text-slate-400 mt-2">Last Updated: September 2026</p>
+  </div>
+
+  <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm prose prose-invert max-w-none text-sm leading-relaxed space-y-6 text-slate-300">
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">1. Acceptance of Terms</h2>
+      <p>By accessing, browsing, or utilizing the information network on OmniWire Media (<a href="https://omniwiremedia.com" class="text-emerald-400 font-semibold hover:opacity-80">omniwiremedia.com</a>), you verify that you have read, comprehended, and agreed to be governed by these Terms of Publication and applicable global intellectual property laws.</p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">2. Intellectual Property Rights &amp; Syndication</h2>
+      <p>All original investigative reporting, computational editorial layouts, real-time wire feeds, branding logos, visual hierarchies, and proprietary editorial models published on OmniWire Media Group represent the protected property of OmniWire Media and its Chief Publisher, <strong>Ikram Rajput</strong>. Unauthorized commercial scraping, reproduction, or mass automated extraction without prior written syndication authorization is strictly prohibited.</p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">3. Professional Information Disclaimer</h2>
+      <p>The editorial articles published across our verticals—specifically Finance &amp; Cryptocurrency, Cybersecurity, and AI Infrastructure—are made available exclusively for general analytical, research, and informational news purposes. None of the content hosted on omniwiremedia.com constitutes licensed financial, legal, or investment advice. Visitors execute market, software, or commercial actions at their sole personal discretion and liability.</p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">4. Guest Contributions &amp; Editorial Submissions</h2>
+      <p>All guest editorial pitches, technical articles, and guest posts submitted to our desk must be 100% original, verified, factually validated, and entirely free of copyright infringements or plagiarized models. OmniWire Media retains permanent editorial authority to amend, truncate, refuse, or remove published submissions that violate our quality metrics.</p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">5. External Third-Party Hyperlinks</h2>
+      <p>Our news portal contains outbound hyperlinks directed to third-party sources, corporate documentation, research studies, and institutional repositories. OmniWire Media holds zero governance over external server domains and accepts no legal liability for external data, policies, or practices.</p>
+    </section>
+
+    <section class="pt-4 border-t border-slate-800 space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">6. Modifications to Service</h2>
+      <p>OmniWire Media reserves the unilateral authority to modify, temporarily halt, or decommission any sector of our news network at any time without prior notifications.</p>
+    </section>
+
+  </div>
+</div>

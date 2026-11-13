@@ -1,0 +1,48 @@
+<?php
+/**
+ * OmniWire Media - About OmniWire Media Group
+ * Target File: templates/about.php
+ */
+?>
+<div class="max-w-3xl mx-auto space-y-8 animate-fade-in-up">
+  <div class="border-b border-slate-800 pb-6">
+    <span class="text-xs font-bold uppercase tracking-wider text-emerald-500 block mb-2">Corporate Masthead &amp; E-E-A-T</span>
+    <h1 class="text-3xl sm:text-4xl font-serif font-extrabold text-white">About OmniWire Media Group</h1>
+    <p class="text-xs sm:text-sm text-slate-400 mt-2">Global Trend Intelligence &amp; High-Integrity Journalism</p>
+  </div>
+
+  <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm prose prose-invert max-w-none text-sm leading-relaxed space-y-6 text-slate-300">
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">1. Mission &amp; Editorial Philosophy</h2>
+      <p>OmniWire Media is an independent digital publication based in Hyderabad, Pakistan. We publish daily Pakistan-focused prices (gold and petrol), explainers, and analysis across technology, business, health and sport. Articles are researched and drafted with AI assistance, checked against their sources, and reviewed before publication.</p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">2. How We Work</h2>
+      <p>We cite and link our sources in every article, publish daily prices only when two sources agree, and correct errors openly. We do not sell links or publish paid guest posts, and advertising never buys coverage.</p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">3. Core Global Verticals</h2>
+      <ul class="list-disc list-inside space-y-2 text-slate-300 pl-1">
+        <li><strong class="text-white">AI &amp; Future Tech:</strong> Tracking neural architectures, LLM breakthroughs, supercomputing, and edge machine learning.</li>
+        <li><strong class="text-white">Finance, Gold &amp; Cryptocurrency:</strong> Institutional blockchain flows, macroeconomic central banking policies, and liquidity analytics.</li>
+        <li><strong class="text-white">Cybersecurity &amp; Privacy:</strong> Critical infrastructure hardening, zero-trust protocols, SCADA defenses, and vulnerability forensics.</li>
+        <li><strong class="text-white">Digital Business &amp; Remote SaaS:</strong> Enterprise tools, global digital economics, and asynchronous work dynamics.</li>
+        <li><strong class="text-white">Health &amp; Longevity:</strong> Clinical biotechnology, longevity research, and medical breakthroughs.</li>
+        <li><strong class="text-white">World Sports:</strong> Global tournaments, tactical telemetries, and regulatory developments.</li>
+      </ul>
+    </section>
+
+    <section class="pt-4 border-t border-slate-800 space-y-2">
+      <h2 class="text-lg sm:text-xl font-serif font-bold text-white">4. Editorial Leadership &amp; Ownership</h2>
+      <ul class="space-y-1.5 text-xs sm:text-sm text-slate-300">
+        <li><strong class="text-white">Entity:</strong> OmniWire Media Group (<a href="https://omniwiremedia.com" class="text-emerald-400 font-semibold hover:opacity-80">omniwiremedia.com</a>)</li>
+        <li><strong class="text-white">Chief Publisher &amp; Editorial Director:</strong> OmniWire Editorial Desk</li>
+        <li><strong class="text-white">Direct Desk Inquiries:</strong> <!--email_off--><a href="mailto:editorial@omniwiremedia.com" class="text-emerald-400 font-semibold hover:opacity-80">editorial@omniwiremedia.com</a><!--/email_off--> | <a href="https://omniwiremedia.com/contact-us" class="text-emerald-400 font-semibold hover:opacity-80"></a></li>
+      </ul>
+    </section>
+
+  </div>
+</div>

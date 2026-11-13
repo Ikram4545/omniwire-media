@@ -1,0 +1,83 @@
+<?php
+/**
+ * OMNIWIRE MEDIA - UNIFIED TEMPLATE FOOTER (v12.1 HOTFIX)
+ */
+$basePrefix = isset($basePrefix) ? $basePrefix : '';
+?>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 bg-slate-950 mt-16 pt-12 pb-8 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+            </div>
+            <span class="font-serif font-extrabold text-white text-lg">OmniWire Media</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            OmniWire Media (omniwiremedia.com) is an autonomous global digital intelligence network delivering real-time investigative research, cybersecurity forensics, macro-finance analysis, and technical editorial guest post syndication across 6 core industry verticals.
+          </p>
+        </div>
+
+        <!-- News Verticals -->
+        <div>
+          <h4 class="font-serif font-bold text-white text-sm mb-4">News Verticals</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="<?= $basePrefix ?>/category/ai-tech" class="hover:text-emerald-400 transition">AI &amp; Future Tech</a></li>
+            <li><a href="<?= $basePrefix ?>/category/cybersecurity" class="hover:text-emerald-400 transition">Cybersecurity &amp; Threat Intel</a></li>
+            <li><a href="<?= $basePrefix ?>/category/digital-business" class="hover:text-emerald-400 transition">Digital Business &amp; SaaS</a></li>
+            <li><a href="<?= $basePrefix ?>/category/finance-crypto" class="hover:text-emerald-400 transition">Finance &amp; Macro Crypto</a></li>
+            <li><a href="<?= $basePrefix ?>/category/sports" class="hover:text-emerald-400 transition">Sports Analytics &amp; F1</a></li>
+            <li><a href="<?= $basePrefix ?>/category/health-wellness" class="hover:text-emerald-400 transition">Health &amp; Longevity</a></li>
+          </ul>
+        </div>
+
+        <!-- Editorial & Services -->
+        <div>
+          <h4 class="font-serif font-bold text-white text-sm mb-4">Editorial &amp; Sponsorship</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="<?= $basePrefix ?>/write-for-us" class="hover:text-emerald-400 transition">Editorial Guest Posting</a></li>
+            <li><a href="<?= $basePrefix ?>/submit-order" class="hover:text-emerald-400 transition">Order Intake Portal</a></li>
+            <li><a href="<?= $basePrefix ?>/sitemap.xml" class="hover:text-emerald-400 transition">XML News Sitemap</a></li>
+            <li><a href="<?= $basePrefix ?>/robots.txt" class="hover:text-emerald-400 transition">Crawler Directives</a></li>
+          </ul>
+        </div>
+
+        <!-- Direct Contact -->
+        <div>
+          <h4 class="font-serif font-bold text-white text-sm mb-4">Desk Contact</h4>
+          <ul class="space-y-2 text-xs">
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>editorial@omniwiremedia.com</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>WhatsApp: </span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; <?= date('Y') ?> OmniWire Media (omniwiremedia.com). All rights reserved. Syndicated globally.</p>
+        <div class="flex items-center gap-4">
+          <a href="<?= $basePrefix ?>/privacy" class="hover:text-slate-400 transition">Privacy Policy</a>
+          <span>&bull;</span>
+          <a href="<?= $basePrefix ?>/terms" class="hover:text-slate-400 transition">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

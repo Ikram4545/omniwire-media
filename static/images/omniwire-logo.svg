@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 50" width="260" height="50" fill="none">
+  <defs>
+    <!-- Brand Gradients -->
+    <linearGradient id="owIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="50%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="owWireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="pulseGlow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#059669" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- 1. ICON MARK (44x44) -->
+  <g transform="translate(2, 3)" filter="url(#subtleShadow)">
+    <!-- Squircle Base -->
+    <rect width="44" height="44" rx="12" fill="url(#owIconGrad)"/>
+    <rect x="0.75" y="0.75" width="42.5" height="42.5" rx="11.25" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+
+    <!-- Orbital Ring (O Concept) -->
+    <circle cx="22" cy="22" r="14" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+
+    <!-- Digital Signal Wave (W Concept) -->
+    <path d="M12 18 L17 28 L22 20 L27 28 L32 18" stroke="url(#pulseGlow)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Broadcast Signal Beacon Node -->
+    <circle cx="31" cy="12" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+  </g>
+
+  <!-- 2. TYPOGRAPHY (Light Mode: Slate-900 / Emerald-Cyan) -->
+  <g transform="translate(56, 4)">
+    <!-- Main Title: OMNI WIRE -->
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="23" font-weight="900" letter-spacing="-0.5" fill="#0f172a">
+      OMNI<tspan fill="url(#owWireGrad)">WIRE</tspan>
+    </text>
+
+    <!-- Subtitle: MEDIA Badge + Global Wire -->
+    <g transform="translate(1, 31)">
+      <!-- MEDIA Pill Badge -->
+      <rect x="0" y="0" width="46" height="13" rx="3.5" fill="#059669"/>
+      <text x="7.5" y="9.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" letter-spacing="1.5" fill="#ffffff">MEDIA</text>
+      
+      <!-- Network Tag -->
+      <circle cx="55" cy="6.5" r="1.5" fill="#94a3b8"/>
+      <text x="63" y="9.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" letter-spacing="1.2" fill="#64748b">GLOBAL DIGITAL WIRE</text>
+    </g>
+  </g>
+</svg>

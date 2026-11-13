@@ -1,0 +1,89 @@
+RewriteRule ^author/ikram-rajput/?$ /author/editorial-desk [R=301,L]
+RewriteRule ^author/marcus-vance/?$ /author/editorial-desk [R=301,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteRule ^article/pakistan-s-filing-deadline-moves-to-october-15-as-fbr-s-ai-learns-to-cross-check-returns-365$ /article/how-to-check-your-fbr-filer-status-and-what-non-filers-pay-extra-766 [R=301,L]
+RewriteRule ^about$ /about-us [R=301,L]
+RewriteRule ^contact$ /contact-us [R=301,L]
+RewriteRule ^gold-price-in-pakistan-today/?$ gold-price.php [L]
+    RewriteRule ^petrol-price-in-pakistan-today/?$ petrol-price.php [L]
+    RewriteRule ^mobiles/?$ mobiles.php [L]
+    RewriteRule ^mobile/([^/]+)/?$ mobile.php?slug=$1 [L,QSA]
+    RewriteRule ^sports/live/?$ sports-live.php [L]
+    RewriteRule ^sports-live/?$ sports-live.php [L]
+    # Allow direct access to existing files and directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+RewriteRule ^category/cybersecurity$ /category/enterprise-cyber [R=301,L]
+RewriteRule ^category/finance-crypto$ /category/fintech-crypto [R=301,L]
+RewriteRule ^category/health-wellness$ /category/health-longevity [R=301,L]
+RewriteRule ^category/sports$ /category/world-sports [R=301,L]
+
+    # Route all other requests to index.php
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+
+# Security: Block direct browser access to SQLite database and log files
+<FilesMatch "\.(db|sqlite|sqlite3|log)$">
+    Require all denied
+</FilesMatch>
+
+# Security: Prevent directory listing
+Options -Indexes
+
+# Gzip & Brotli Compression for HTML, CSS, JS, JSON, SVG, Fonts
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml font/ttf font/otf font/woff font/woff2
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml font/ttf font/otf font/woff font/woff2
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
+</IfModule>
+
+# Static Asset Browser Caching (WebP, CSS, JS, Fonts, SVG)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(webp|svg|css|js|woff2|woff|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "^(gsc_service_account\.json|news_portal\.db)$">
+Require all denied
+</FilesMatch>
+
+# Protect diagnostic files
+<FilesMatch "^(check_|chk_|test_|inspect_|probe_|_probe_pt|debug_cron|compare_counts|lint_check|read_err|get_log|fix_wal|migrate_|verify_|MASTER_PROMPT|CHANGELOG)">
+Require all denied
+</FilesMatch>
+# Block web access to publisher/refresh scripts (Muse, 2026-10-02)
+<FilesMatch "^(run_publish|run_refresh|run_expand|run_actual_refresh|pre_deploy_backup)\.php$">
+Require all denied
+</FilesMatch>
+<FilesMatch "^generate_articles\.php$">
+Require all denied
+</FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
