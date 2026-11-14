@@ -1,6 +1,6 @@
 [
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 16 Pro Max",
     "slug": "apple-iphone-16-pro-max",
     "price_pkr": 459999,
@@ -21,7 +21,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 16 Pro",
     "slug": "apple-iphone-16-pro",
     "price_pkr": 366999,
@@ -42,7 +42,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 16 Plus",
     "slug": "apple-iphone-16-plus",
     "price_pkr": 327999,
@@ -63,7 +63,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 16",
     "slug": "apple-iphone-16",
     "price_pkr": 330799,
@@ -84,7 +84,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 15 Pro Max",
     "slug": "apple-iphone-15-pro-max",
     "price_pkr": 392000,
@@ -105,7 +105,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 15 Pro",
     "slug": "apple-iphone-15-pro",
     "price_pkr": 322000,
@@ -126,7 +126,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 15 Plus",
     "slug": "apple-iphone-15-plus",
     "price_pkr": 377100,
@@ -147,7 +147,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 15",
     "slug": "apple-iphone-15",
     "price_pkr": 264999,
@@ -168,7 +168,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 14 Pro Max",
     "slug": "apple-iphone-14-pro-max",
     "price_pkr": 499999,
@@ -189,7 +189,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 14 Pro",
     "slug": "apple-iphone-14-pro",
     "price_pkr": 505999,
@@ -210,7 +210,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 14 Plus",
     "slug": "apple-iphone-14-plus",
     "price_pkr": 420999,
@@ -231,7 +231,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 14",
     "slug": "apple-iphone-14",
     "price_pkr": 183999,
@@ -252,7 +252,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 13 Pro Max",
     "slug": "apple-iphone-13-pro-max",
     "price_pkr": 369600,
@@ -273,7 +273,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 13 Pro",
     "slug": "apple-iphone-13-pro",
     "price_pkr": 342000,
@@ -294,7 +294,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 13",
     "slug": "apple-iphone-13",
     "price_pkr": 171500,
@@ -315,7 +315,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 13 Mini",
     "slug": "apple-iphone-13-mini",
     "price_pkr": 223400,
@@ -336,7 +336,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 12 Pro Max",
     "slug": "apple-iphone-12-pro-max",
     "price_pkr": 235999,
@@ -357,7 +357,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 12 Pro",
     "slug": "apple-iphone-12-pro",
     "price_pkr": 220899,
@@ -378,7 +378,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 12",
     "slug": "apple-iphone-12",
     "price_pkr": 175599,
@@ -399,7 +399,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 11 Pro Max",
     "slug": "apple-iphone-11-pro-max",
     "price_pkr": 226600,
@@ -420,7 +420,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone 11",
     "slug": "apple-iphone-11",
     "price_pkr": 135500,
@@ -441,7 +441,7 @@
     "features_sensors": "Face ID, MagSafe, Nano-SIM + eSIM"
   },
   {
-    "brand_id": 1,
+    "brand_id": 2,
     "model_name": "Apple iPhone SE (2022)",
     "slug": "apple-iphone-se-2022",
     "price_pkr": 105000,
@@ -462,7 +462,7 @@
     "features_sensors": "Touch ID, Qi wireless charging, IP67"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy S24 Ultra",
     "slug": "samsung-galaxy-s24-ultra",
     "price_pkr": 323999,
@@ -483,7 +483,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy S24",
     "slug": "samsung-galaxy-s24",
     "price_pkr": 207999,
@@ -504,7 +504,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy S24 FE",
     "slug": "samsung-galaxy-s24-fe",
     "price_pkr": 167999,
@@ -525,7 +525,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy S23 Ultra",
     "slug": "samsung-galaxy-s23-ultra",
     "price_pkr": 281999,
@@ -546,7 +546,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy S23 FE",
     "slug": "samsung-galaxy-s23-fe",
     "price_pkr": 109999,
@@ -567,7 +567,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy Z Fold 6",
     "slug": "samsung-galaxy-z-fold-6",
     "price_pkr": 485999,
@@ -588,7 +588,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy Z Fold 5",
     "slug": "samsung-galaxy-z-fold-5",
     "price_pkr": 325999,
@@ -609,7 +609,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy Z Flip 5",
     "slug": "samsung-galaxy-z-flip-5",
     "price_pkr": 217999,
@@ -630,7 +630,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy A55 5G",
     "slug": "samsung-galaxy-a55-5g",
     "price_pkr": 99999,
@@ -651,7 +651,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy A35 5G",
     "slug": "samsung-galaxy-a35-5g",
     "price_pkr": 83499,
@@ -672,7 +672,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy A15",
     "slug": "samsung-galaxy-a15",
     "price_pkr": 44999,
@@ -693,7 +693,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy A05s",
     "slug": "samsung-galaxy-a05s",
     "price_pkr": 29500,
@@ -714,7 +714,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 2,
+    "brand_id": 1,
     "model_name": "Samsung Galaxy A05",
     "slug": "samsung-galaxy-a05",
     "price_pkr": 31299,
@@ -735,7 +735,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix GT 20 Pro",
     "slug": "infinix-gt-20-pro",
     "price_pkr": 87999,
@@ -756,7 +756,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix GT 10 Pro",
     "slug": "infinix-gt-10-pro",
     "price_pkr": 0,
@@ -777,7 +777,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix Zero 30 5G",
     "slug": "infinix-zero-30-5g",
     "price_pkr": 94499,
@@ -798,7 +798,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix Note 40 Pro",
     "slug": "infinix-note-40-pro",
     "price_pkr": 63899,
@@ -819,7 +819,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix Hot 40 Pro",
     "slug": "infinix-hot-40-pro",
     "price_pkr": 38999,
@@ -840,7 +840,7 @@
     "features_sensors": "In-Display Fingerprint, Fast Charging, Dual SIM"
   },
   {
-    "brand_id": 5,
+    "brand_id": 6,
     "model_name": "Infinix Smart 8",
     "slug": "infinix-smart-8",
     "price_pkr": 19999,

@@ -1,12 +1,52 @@
 <?php
 /**
  * OMNIWIRE MEDIA - MOBILE SPECIFICATIONS CATALOG HUB (v2.0)
- * 68+ Complete Smartphone Database with Verified PTA Tax Slabs & 3D Model Previews
+ * Live Smartphone Database with Verified PTA Tax Slabs & 3D Model Previews
  */
-$db = new PDO('sqlite:/home/omniwiremedia/public_html/news_portal.db');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbPath = file_exists(__DIR__ . '/news_portal.db') 
+    ? __DIR__ . '/news_portal.db' 
+    : (file_exists(__DIR__ . '/live_news_portal.db') ? __DIR__ . '/live_news_portal.db' : '/home/omniwiremedia/public_html/news_portal.db');
 
-// Fetch brands with live count
+try {
+    $db = new PDO('sqlite:' . $dbPath);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) {
+    die('Database connection failure.');
+}
+
+// Fetch all devices
+$devices = $db->query("
+    SELECT d.*, b.name as brand_name, b.slug as brand_slug 
+    FROM mobile_devices d 
+    JOIN mobile_brands b ON d.brand_id = b.id 
+    ORDER BY d.price_pkr DESC
+")->fetchAll(PDO::FETCH_ASSOC);
+
+// Brand normalization guard
+foreach ($devices as &$dev) {
+    $mLower = strtolower(($dev['brand_name'] ?? '') . ' ' . ($dev['model_name'] ?? '') . ' ' . ($dev['slug'] ?? ''));
+    if (str_contains($mLower, 'iphone') || str_contains($mLower, 'apple')) {
+        $dev['brand_name'] = 'Apple';
+        $dev['brand_slug'] = 'apple';
+    } elseif (str_contains($mLower, 'samsung') || str_contains($mLower, 'galaxy')) {
+        $dev['brand_name'] = 'Samsung';
+        $dev['brand_slug'] = 'samsung';
+    } elseif (str_contains($mLower, 'infinix')) {
+        $dev['brand_name'] = 'Infinix';
+        $dev['brand_slug'] = 'infinix';
+    } elseif (str_contains($mLower, 'xiaomi') || str_contains($mLower, 'redmi')) {
+        $dev['brand_name'] = 'Xiaomi';
+        $dev['brand_slug'] = 'xiaomi';
+    } elseif (str_contains($mLower, 'vivo')) {
+        $dev['brand_name'] = 'Vivo';
+        $dev['brand_slug'] = 'vivo';
+    }
+}
+unset($dev);
+
+$totalDevices = count($devices);
+
+// Fetch brands with dynamic counts
 $brands = $db->query("
     SELECT b.*, COUNT(d.id) AS device_count 
     FROM mobile_brands b 
@@ -14,14 +54,6 @@ $brands = $db->query("
     WHERE b.is_active = 1 
     GROUP BY b.id 
     ORDER BY device_count DESC, b.name ASC
-")->fetchAll(PDO::FETCH_ASSOC);
-
-// Fetch all 68 devices
-$devices = $db->query("
-    SELECT d.*, b.name as brand_name, b.slug as brand_slug 
-    FROM mobile_devices d 
-    JOIN mobile_brands b ON d.brand_id = b.id 
-    ORDER BY d.price_pkr DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
 function fmtPrice($n) { 
@@ -34,8 +66,8 @@ function fmtPrice($n) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Prices in Pakistan 2026 | 68+ Phones, 3D View & PTA Tax — OmniWire Media</title>
-  <meta name="description" content="Explore complete official mobile prices in Pakistan for 2026. Compare 68+ Samsung, Apple iPhone, Xiaomi, Vivo, Oppo, Infinix, Tecno, Realme phones with 360° 3D models and exact PTA tax on Passport vs CNIC.">
+  <title>Mobile Prices in Pakistan 2026 | <?= $totalDevices ?>+ Phones, 3D View & PTA Tax — OmniWire Media</title>
+  <meta name="description" content="Explore complete official mobile prices in Pakistan for 2026. Compare <?= $totalDevices ?>+ Samsung, Apple iPhone, Xiaomi, Vivo, Oppo, Infinix, Tecno, Realme phones with 360° 3D models and exact PTA tax on Passport vs CNIC.">
   <link rel="canonical" href="https://omniwiremedia.com/mobiles">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -72,7 +104,7 @@ function fmtPrice($n) {
           <input 
             type="text" 
             id="mobile-search-input"
-            placeholder="Search 68+ phones (iPhone 16, S24 Ultra, Redmi, Camon 30, GT 20)..." 
+            placeholder="Search <?= $totalDevices ?>+ phones (iPhone 16, S24 Ultra, Redmi, Camon 30, GT 20)..." 
             class="w-full pl-10 pr-4 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700/80 focus:border-emerald-500 text-white placeholder-slate-400 outline-none transition"
             onkeyup="applyFilters()"
           >
@@ -249,7 +281,7 @@ function fmtPrice($n) {
 
   <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4">
-      <p>&copy; <?= date('Y') ?> OmniWire Media Intelligence. Showing complete list of 68+ verified smartphones across Pakistan. All product images are property of their respective manufacturers.</p>
+      <p>&copy; <?= date('Y') ?> OmniWire Media Intelligence. Showing complete list of <?= $totalDevices ?>+ verified smartphones across Pakistan. All product images are property of their respective manufacturers.</p>
     </div>
   </footer>
 

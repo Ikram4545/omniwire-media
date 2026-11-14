@@ -18840,7 +18840,7 @@ if ($path === '/') {
           </div>
 
           <div class="flex items-center gap-2">
-            <a href="{$basePrefix}/mobiles" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+            <a href="/mobiles" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
               <i data-lucide="smartphone" class="w-4 h-4"></i> Browse All 52+ Mobiles
             </a>
           </div>
@@ -18850,12 +18850,12 @@ if ($path === '/') {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           <!-- Card 1: iPhone 16 Pro Max -->
-          <a href="{$basePrefix}/mobile/apple-iphone-16-pro-max" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
+          <a href="/mobile/apple-iphone-16-pro-max" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
             <div class="relative aspect-square flex items-center justify-center p-2 mb-3 bg-slate-900/60 rounded-xl overflow-hidden">
               <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[9px] font-black uppercase">
                 3D 360° View
               </span>
-              <img src="{$basePrefix}/static/images/mobiles/apple-iphone-16-pro-max.jpg" alt="Apple iPhone 16 Pro Max price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
+              <img src="/static/images/mobiles/apple-iphone-16-pro-max.jpg" alt="Apple iPhone 16 Pro Max price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
             </div>
             <div>
               <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Apple Flagship</span>
@@ -18869,12 +18869,12 @@ if ($path === '/') {
           </a>
 
           <!-- Card 2: Samsung S24 Ultra -->
-          <a href="{$basePrefix}/mobile/samsung-galaxy-s24-ultra" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
+          <a href="/mobile/samsung-galaxy-s24-ultra" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
             <div class="relative aspect-square flex items-center justify-center p-2 mb-3 bg-slate-900/60 rounded-xl overflow-hidden">
               <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[9px] font-black uppercase">
                 3D 360° View
               </span>
-              <img src="{$basePrefix}/static/images/mobiles/samsung-galaxy-s24-ultra.jpg" alt="Samsung Galaxy S24 Ultra price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
+              <img src="/static/images/mobiles/samsung-galaxy-s24-ultra.jpg" alt="Samsung Galaxy S24 Ultra price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
             </div>
             <div>
               <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Samsung Flagship</span>
@@ -18888,12 +18888,12 @@ if ($path === '/') {
           </a>
 
           <!-- Card 3: Infinix GT 20 Pro -->
-          <a href="{$basePrefix}/mobile/infinix-gt-20-pro" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
+          <a href="/mobile/infinix-gt-20-pro" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
             <div class="relative aspect-square flex items-center justify-center p-2 mb-3 bg-slate-900/60 rounded-xl overflow-hidden">
               <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[9px] font-black uppercase">
                 Cyber Mecha 3D
               </span>
-              <img src="{$basePrefix}/static/images/mobiles/infinix-gt-20-pro.jpg" alt="Infinix GT 20 Pro price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
+              <img src="/static/images/mobiles/infinix-gt-20-pro.jpg" alt="Infinix GT 20 Pro price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
             </div>
             <div>
               <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Gaming Master</span>
@@ -18907,12 +18907,12 @@ if ($path === '/') {
           </a>
 
           <!-- Card 4: Xiaomi 14 Ultra -->
-          <a href="{$basePrefix}/mobile/xiaomi-14-ultra" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
+          <a href="/mobile/xiaomi-14-ultra" class="group p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/60 transition-all flex flex-col justify-between hover:scale-[1.02] shadow-lg">
             <div class="relative aspect-square flex items-center justify-center p-2 mb-3 bg-slate-900/60 rounded-xl overflow-hidden">
               <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 text-[9px] font-black uppercase">
                 Leica Quad Cam
               </span>
-              <img src="{$basePrefix}/static/images/mobiles/xiaomi-14-ultra.jpg" alt="Xiaomi 14 Ultra price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
+              <img src="/static/images/mobiles/xiaomi-14-ultra.jpg" alt="Xiaomi 14 Ultra price in Pakistan" class="max-h-36 max-w-full object-contain group-hover:scale-110 transition duration-300" loading="lazy">
             </div>
             <div>
               <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Leica Imaging</span>
@@ -19054,6 +19054,10 @@ if ($path === '/') {
       </div>
     </div>
     <?php
+    $siteUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . ($_SERVER['HTTP_HOST'] ?? 'omniwiremedia.com') . $basePrefix;
+    if (empty($siteUrl) || !str_starts_with($siteUrl, 'http')) {
+        $siteUrl = 'https://omniwiremedia.com';
+    }
     $contentHtml = ob_get_clean();
     $heroUrl = !empty($heroImg) ? $heroImg : ($hero ? $hero['image_url'] : '');
     $homeSchema = [
@@ -19279,10 +19283,10 @@ if (preg_match('#^/article/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
             'aus-bowling'            => 'subcontinent-turners-vs-australia-s-pace-trio-tactical-breakdown-of-test-championship-pitches-352',
             'neuromorphic'           => 'next-gen-neuromorphic-microchips-achieve-10x-energy-efficiency-in-edge-computing-751',
             'pqc-hsm'                => 'post-quantum-cryptography-hsm-fips-203-mandates',
-            'macro-outlook'          => 'global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-central-banks-360',
-            'macroeconomic-outlook'  => 'global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-central-banks-360',
-            'global-macroeconomic'   => 'global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-central-banks-360',
-            'macro-134'              => 'global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-central-banks-360',
+            'macro-outlook'          => 'federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads',
+            'macroeconomic-outlook'  => 'federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads',
+            'global-macroeconomic'   => 'federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads',
+            'macro-134'              => 'federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads',
             'decentralized-ai'       => 'decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-672',
             'emerging-market'        => 'emerging-market-trade-coalitions-expand-bilateral-currency-settlement-mechanisms-495',
             'gold-reserves'          => 'high-yield-physical-gold-reserves-reach-decadal-highs-amid-currency-diversification-mandates-108',
@@ -19298,10 +19302,19 @@ if (preg_match('#^/article/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
         ];
 
         foreach ($topicAliases as $aliasKey => $targetSlug) {
+            // Guard against self-redirect loops
+            if (strtolower($slugLower) === strtolower($targetSlug)) {
+                continue;
+            }
             if (str_contains($slugLower, $aliasKey)) {
-                header("HTTP/1.1 301 Moved Permanently");
-                header("Location: {$basePrefix}/article/{$targetSlug}");
-                exit;
+                // Ensure target exists and is published in DB before 301 redirecting
+                $stmtCheck = $db->prepare("SELECT slug FROM articles WHERE slug = ? AND is_published = 1 LIMIT 1");
+                $stmtCheck->execute([$targetSlug]);
+                if ($stmtCheck->fetchColumn()) {
+                    header("HTTP/1.1 301 Moved Permanently");
+                    header("Location: {$basePrefix}/article/{$targetSlug}");
+                    exit;
+                }
             }
         }
 
@@ -19326,25 +19339,26 @@ if (preg_match('#^/article/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
                     $stmtMulti->execute([$pattern]);
                 }
                 $matchedSlug = $stmtMulti->fetchColumn();
-                if ($matchedSlug) break;
+                if ($matchedSlug && strtolower($matchedSlug) !== strtolower($slugLower)) break;
             }
         }
 
-        if ($matchedSlug) {
+        if ($matchedSlug && strtolower($matchedSlug) !== strtolower($slugLower)) {
             header("HTTP/1.1 301 Moved Permanently");
             header("Location: {$basePrefix}/article/{$matchedSlug}");
             exit;
         }
 
-        // 3. Fallback: If legacy category is known, redirect to category page; otherwise Homepage
+        // 3. Fallback: If legacy category is known, redirect to category page
         if (!empty($legacyCat)) {
             header("HTTP/1.1 301 Moved Permanently");
             header("Location: {$basePrefix}/category/" . urlencode($legacyCat));
             exit;
         }
 
-        header("HTTP/1.1 301 Moved Permanently");
-        header("Location: {$basePrefix}/");
+        // 4. Truly missing article: Return proper 404 status (prevents GSC Soft-404 penalty)
+        http_response_code(404);
+        echo renderLayout("Story Not Found", "The requested article does not exist or has been permanently moved.", "all", "<div class='text-center py-24 px-4'><h1 class='text-4xl font-serif font-bold text-slate-900 dark:text-white mb-3'>404 - Article Not Found</h1><p class='text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-6'>The article you are looking for does not exist, has expired, or may have been consolidated.</p><div class='flex justify-center gap-3'><a href='{$basePrefix}/' class='px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition'>Browse Homepage</a><a href='{$basePrefix}/mobiles' class='px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition'>Mobile Catalog</a></div></div>");
         exit;
     }
     

@@ -5,6 +5,7 @@ temp_*
 backups_nov06/
 scratch/
 news_portal.db
+*.db
 
 # OS files
 Thumbs.db

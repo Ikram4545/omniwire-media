@@ -7,10 +7,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
-$dbPath = __DIR__ . '/news_portal.db';
-if (!file_exists($dbPath)) {
-    $dbPath = '/home/omniwiremedia/public_html/news_portal.db';
-}
+$dbPath = file_exists(__DIR__ . '/news_portal.db') 
+    ? __DIR__ . '/news_portal.db' 
+    : (file_exists(__DIR__ . '/live_news_portal.db') ? __DIR__ . '/live_news_portal.db' : '/home/omniwiremedia/public_html/news_portal.db');
 
 try {
     $db = new PDO('sqlite:' . $dbPath);
@@ -21,7 +20,7 @@ try {
 
 $slug = trim($_GET['slug'] ?? '');
 if (empty($slug)) {
-    header('Location: /mobiles.php');
+    header('Location: /mobiles');
     exit;
 }
 
@@ -46,8 +45,27 @@ $device = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$device) {
     header('HTTP/1.0 404 Not Found');
-    echo '<!DOCTYPE html><html><head><title>Device Not Found - OmniWire Media</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-4 text-center"><div class="max-w-md space-y-4"><div class="text-6xl font-black text-emerald-500">404</div><h1 class="text-xl font-bold">Mobile Model Not Found</h1><p class="text-xs text-slate-400">The mobile specification you are searching for may have been updated or moved.</p><a href="/mobiles.php" class="inline-block px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">Browse 68+ Mobiles Catalog</a></div></body></html>';
+    echo '<!DOCTYPE html><html><head><title>Device Not Found - OmniWire Media</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-4 text-center"><div class="max-w-md space-y-4"><div class="text-6xl font-black text-emerald-500">404</div><h1 class="text-xl font-bold">Mobile Model Not Found</h1><p class="text-xs text-slate-400">The mobile specification you are searching for may have been updated or moved.</p><a href="/mobiles" class="inline-block px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">Browse Mobile Catalog</a></div></body></html>';
     exit;
+}
+
+// Brand normalization safety guard (prevents cross-brand badge/breadcrumb mismatch)
+$modelLower = strtolower(($device['brand_name'] ?? '') . ' ' . ($device['model_name'] ?? '') . ' ' . ($device['slug'] ?? ''));
+if (str_contains($modelLower, 'iphone') || str_contains($modelLower, 'apple')) {
+    $device['brand_name'] = 'Apple';
+    $device['brand_slug'] = 'apple';
+} elseif (str_contains($modelLower, 'samsung') || str_contains($modelLower, 'galaxy')) {
+    $device['brand_name'] = 'Samsung';
+    $device['brand_slug'] = 'samsung';
+} elseif (str_contains($modelLower, 'infinix')) {
+    $device['brand_name'] = 'Infinix';
+    $device['brand_slug'] = 'infinix';
+} elseif (str_contains($modelLower, 'xiaomi') || str_contains($modelLower, 'redmi')) {
+    $device['brand_name'] = 'Xiaomi';
+    $device['brand_slug'] = 'xiaomi';
+} elseif (str_contains($modelLower, 'vivo')) {
+    $device['brand_name'] = 'Vivo';
+    $device['brand_slug'] = 'vivo';
 }
 
 // Normalize fields
@@ -203,6 +221,38 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://omniwiremedia.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Mobiles",
+        "item": "https://omniwiremedia.com/mobiles"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "<?= addslashes($device['brand_name']) ?>",
+        "item": "https://omniwiremedia.com/mobiles?brand=<?= addslashes($device['brand_slug']) ?>"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "<?= addslashes($device['model_name']) ?>",
+        "item": "<?= $canonicalUrl ?>"
+      }
+    ]
+  }
+  </script>
 
   <style>
     #canvas-container {
@@ -230,14 +280,14 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
           <span class="font-serif font-black text-xl text-white">Omni<span class="text-emerald-500">Wire</span></span>
         </a>
         <div class="h-5 w-px bg-slate-800 hidden sm:block"></div>
-        <a href="/mobiles.php" class="text-xs font-bold text-amber-400 hover:text-amber-300 hidden sm:flex items-center gap-1.5">
-          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> All 68+ Mobiles
+        <a href="/mobiles" class="text-xs font-bold text-amber-400 hover:text-amber-300 hidden sm:flex items-center gap-1.5">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Mobile Catalog
         </a>
       </div>
 
       <div class="flex items-center gap-4">
-        <a href="/sports-live.php" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 font-bold">
-          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Live Cricket
+        <a href="/sports/live" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 font-bold">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Live Scores
         </a>
         <a href="/gold-price-in-pakistan-today" class="text-xs text-amber-400 hover:text-amber-300 font-bold hidden sm:block">
           Gold Rate Today
@@ -251,9 +301,9 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
     <div class="max-w-7xl mx-auto px-4 flex items-center gap-2 text-xs text-slate-400">
       <a href="/" class="hover:text-emerald-400">Home</a>
       <i data-lucide="chevron-right" class="w-3 h-3 text-slate-600"></i>
-      <a href="/mobiles.php" class="hover:text-emerald-400">Mobiles</a>
+      <a href="/mobiles" class="hover:text-emerald-400">Mobiles</a>
       <i data-lucide="chevron-right" class="w-3 h-3 text-slate-600"></i>
-      <a href="/mobiles.php?brand=<?= htmlspecialchars($device['brand_slug']) ?>" class="hover:text-emerald-400"><?= htmlspecialchars($device['brand_name']) ?></a>
+      <a href="/mobiles?brand=<?= htmlspecialchars($device['brand_slug']) ?>" class="hover:text-emerald-400"><?= htmlspecialchars($device['brand_name']) ?></a>
       <i data-lucide="chevron-right" class="w-3 h-3 text-slate-600"></i>
       <span class="text-slate-200 font-bold"><?= htmlspecialchars($device['model_name']) ?></span>
     </div>

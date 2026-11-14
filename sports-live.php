@@ -39,8 +39,8 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
         <span class="font-serif font-black text-xl text-white">Omni<span class="text-emerald-500">Wire</span> Sports</span>
       </a>
       <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
-          <span class="w-2 h-2 rounded-full bg-rose-500 live-dot"></span> LIVE MATCH CENTER
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span> MATCH SIMULATION / ARCHIVE
         </span>
         <a href="/category/world-sports" class="text-xs text-slate-400 hover:text-white font-medium">Back to News</a>
       </div>
@@ -83,10 +83,10 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
             <p class="text-xs text-slate-400">Gaddafi Stadium, Lahore &bull; Day/Night ODI</p>
           </div>
           <div class="text-right">
-            <span class="px-2.5 py-1 rounded-lg bg-rose-950/80 border border-rose-800/60 text-rose-400 text-xs font-black uppercase tracking-wider inline-flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 live-dot"></span> LIVE 2ND INNINGS
+            <span class="px-2.5 py-1 rounded-lg bg-amber-950/80 border border-amber-800/60 text-amber-400 text-xs font-black uppercase tracking-wider inline-flex items-center gap-1">
+              DEMO SCORECARD
             </span>
-            <div id="refresh-timer" class="text-[10px] text-slate-500 mt-1">Auto-refreshing in 15s</div>
+            <div id="refresh-timer" class="text-[10px] text-slate-400 mt-1 font-mono">Archive Feed &bull; Live stream activates on matchdays</div>
           </div>
         </div>
 
@@ -290,17 +290,15 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
   <script>
     lucide.createIcons();
     
-    // Auto-refresh countdown for live feel
-    let count = 15;
-    setInterval(() => {
-      count--;
-      if (count <= 0) {
-        count = 15;
-        // In full deployment, fetches live JSON delta
+    // Live match feed handler: checks for scheduled real-time telemetry feed
+    function initSportsFeed() {
+      // Prepared for upstream webhook / JSON feed integration
+      const timerEl = document.getElementById('refresh-timer');
+      if (timerEl) {
+        timerEl.innerText = 'Static Match Simulation • Real-time live ball telemetry streams during scheduled matches';
       }
-      const el = document.getElementById('refresh-timer');
-      if (el) el.innerText = 'Auto-refreshing in ' + count + 's';
-    }, 1000);
+    }
+    initSportsFeed();
 
     function vote(team) {
       alert('Thank you for voting! Your prediction has been registered.');

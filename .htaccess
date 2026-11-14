@@ -1,40 +1,136 @@
-RewriteRule ^author/ikram-rajput/?$ /author/editorial-desk [R=301,L]
-RewriteRule ^author/marcus-vance/?$ /author/editorial-desk [R=301,L]
+# ==============================================================================
+# OMNIWIRE MEDIA - PRODUCTION APACHE / LITESPEED CONFIGURATION (.htaccess)
+# Clean Routing, Canonical Enforcement, Performance Caching & Security Rules
+# ==============================================================================
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    RewriteRule ^article/pakistan-s-filing-deadline-moves-to-october-15-as-fbr-s-ai-learns-to-cross-check-returns-365$ /article/how-to-check-your-fbr-filer-status-and-what-non-filers-pay-extra-766 [R=301,L]
-RewriteRule ^about$ /about-us [R=301,L]
-RewriteRule ^contact$ /contact-us [R=301,L]
-RewriteRule ^gold-price-in-pakistan-today/?$ gold-price.php [L]
-    RewriteRule ^petrol-price-in-pakistan-today/?$ petrol-price.php [L]
-    RewriteRule ^mobiles/?$ mobiles.php [L]
-    RewriteRule ^mobile/([^/]+)/?$ mobile.php?slug=$1 [L,QSA]
-    RewriteRule ^sports/live/?$ sports-live.php [L]
-    RewriteRule ^sports-live/?$ sports-live.php [L]
-    # Allow direct access to existing files and directories
+    # --------------------------------------------------------------------------
+    # 1. CANONICAL HOST & PROTOCOL ENFORCEMENT (Single-Hop 301)
+    # Enforce HTTPS and non-WWW across all incoming requests
+    # --------------------------------------------------------------------------
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
+
+    RewriteCond %{HTTP_HOST} ^www\.omniwiremedia\.com$ [NC]
+    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
+
+    # --------------------------------------------------------------------------
+    # 2. TRAILING SLASH NORMALIZATION
+    # Strip trailing slash from all non-directory requests to prevent duplicate content
+    # --------------------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} ^(.+)/$
+    RewriteRule ^(.+)/$ https://omniwiremedia.com/$1 [L,R=301]
+
+    # --------------------------------------------------------------------------
+    # 3. DIRECT PHP EXTENSION REDIRECTS (Single-Hop 301)
+    # Redirect direct browser accesses for .php files to preferred canonical URLs
+    # --------------------------------------------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+mobiles\.php[\s?] [NC]
+    RewriteRule ^mobiles\.php$ /mobiles [L,R=301]
+
+    RewriteCond %{THE_REQUEST} \s/+sports-live\.php[\s?] [NC]
+    RewriteRule ^sports-live\.php$ /sports/live [L,R=301]
+
+    RewriteCond %{THE_REQUEST} \s/+gold-price\.php[\s?] [NC]
+    RewriteRule ^gold-price\.php$ /gold-price-in-pakistan-today [L,R=301]
+
+    RewriteCond %{THE_REQUEST} \s/+petrol-price\.php[\s?] [NC]
+    RewriteRule ^petrol-price\.php$ /petrol-price-in-pakistan-today [L,R=301]
+
+    # --------------------------------------------------------------------------
+    # 4. PUBLIC CANONICAL ALIASES & PERMANENT REDIRECTS (301)
+    # --------------------------------------------------------------------------
+    # Sports Hub canonical URL is /sports/live
+    RewriteRule ^sports-live$ /sports/live [L,R=301]
+
+    # Static Pages
+    RewriteRule ^about$ /about-us [L,R=301]
+    RewriteRule ^contact$ /contact-us [L,R=301]
+
+    # Authors
+    RewriteRule ^author/ikram-rajput$ /author/editorial-desk [L,R=301]
+    RewriteRule ^author/marcus-vance$ /author/editorial-desk [L,R=301]
+
+    # Legacy Category Verticals
+    RewriteRule ^category/cybersecurity$ /category/enterprise-cyber [L,R=301]
+    RewriteRule ^category/finance-crypto$ /category/fintech-crypto [L,R=301]
+    RewriteRule ^category/health-wellness$ /category/health-longevity [L,R=301]
+    RewriteRule ^category/sports$ /category/world-sports [L,R=301]
+
+    # Specific High-Traffic Historical Article Redirects (GSC Alignment)
+    RewriteRule ^article/global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-centr-134$ /article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
+    RewriteRule ^article/virat-kohli-s-chase-blueprint-how-elite-cardiovascular-conditioning-redefined-white-ball-cricket-595$ /article/virat-kohli-masterclass-chases-cricket-greatest-finisher-tactical-blueprint [L,R=301]
+    RewriteRule ^article/global-supply-chain-re-shoring-nearshoring-hubs-and-automated-logistics-corridors-973$ /article/why-global-supply-chain-re-shoring-has-become-the-biggest-test-for-nearshoring-hubs-and-automated-logistics-corridors-142 [L,R=301]
+    RewriteRule ^article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-724$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-217$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-945$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/openai-anthropic-deepmind-deploy-next-gen-autonomous-ai-coding-reasoning-architecture-337$ /article/openai-deepmind-next-gen-autonomous-reasoning-models-architecture-benchmarks-and-tool-integration-556 [L,R=301]
+    RewriteRule ^article/post-quantum-cryptography-hsm-fips-203-mandates$ /article/post-quantum-cryptography-migration-nist-standards-kyber-768-and-tls-1-3-implementation-roadmap-409 [L,R=301]
+    RewriteRule ^article/us-federal-reserve-interest-rate-decisions-spark-heavy-capital-rotation-into-crypto-gold-assets-780$ /article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
+    RewriteRule ^article/zero-trust-quantum-computing-nist-post-quantum-cryptography-fips-203-204-harvest-now-decrypt-later$ /article/quantum-computing-coherence-times-hit-new-milestone-superconducting-qubits-error-correction-710 [L,R=301]
+    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-175$ /article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
+    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-313$ /article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
+    RewriteRule ^article/australia-fast-bowling-trio-vs-subcontinent-spin-world-test-championship$ /article/subcontinent-turners-vs-australia-s-pace-trio-tactical-breakdown-of-test-championship-pitches-352 [L,R=301]
+    RewriteRule ^article/cellular-autophagy-precision-intermittent-fasting-longevity$ /article/why-stanford-longevity-protocol-is-forcing-industry-leaders-to-rethink-time-restricted-feeding-nad-precursors-and-cellular-autophagy-dynamics-348 [L,R=301]
+    RewriteRule ^article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-sleep-396$ /article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-137 [L,R=301]
+    RewriteRule ^article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-972$ /article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-672 [L,R=301]
+    RewriteRule ^article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-what-to-watch-for-433$ /article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-season-preview [L,R=301]
+    RewriteRule ^article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-348$ /article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-921 [L,R=301]
+    RewriteRule ^article/pakistan-s-filing-deadline-moves-to-october-15-as-fbr-s-ai-learns-to-cross-check-returns-365$ /article/how-to-check-your-fbr-filer-status-and-what-non-filers-pay-extra-766 [L,R=301]
+
+    # --------------------------------------------------------------------------
+    # 5. CORE ENGINE INTERNAL REWRITE RULES (Preserve Routing Without Loops)
+    # --------------------------------------------------------------------------
+    RewriteRule ^gold-price-in-pakistan-today$ gold-price.php [L]
+    RewriteRule ^petrol-price-in-pakistan-today$ petrol-price.php [L]
+    RewriteRule ^mobiles$ mobiles.php [L]
+    RewriteRule ^mobile/([^/]+)$ mobile.php?slug=$1 [L,QSA]
+    RewriteRule ^sports/live$ sports-live.php [L]
+
+    # Allow direct access to real existing files and directories
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
-RewriteRule ^category/cybersecurity$ /category/enterprise-cyber [R=301,L]
-RewriteRule ^category/finance-crypto$ /category/fintech-crypto [R=301,L]
-RewriteRule ^category/health-wellness$ /category/health-longevity [R=301,L]
-RewriteRule ^category/sports$ /category/world-sports [R=301,L]
 
-    # Route all other requests to index.php
+    # Route all other frontend requests to index.php
     RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>
 
-# Security: Block direct browser access to SQLite database and log files
-<FilesMatch "\.(db|sqlite|sqlite3|log)$">
+# ==============================================================================
+# SECURITY DIRECTIVES
+# ==============================================================================
+
+# Block direct browser access to SQLite database files, logs, and backups
+<FilesMatch "\.(db|sqlite|sqlite3|log|bak)$">
     Require all denied
 </FilesMatch>
 
-# Security: Prevent directory listing
+# Prevent directory listing
 Options -Indexes
 
-# Gzip & Brotli Compression for HTML, CSS, JS, JSON, SVG, Fonts
+# Protect sensitive credentials and database files
+<FilesMatch "^(gsc_service_account\.json|news_portal\.db|live_news_portal\.db)$">
+    Require all denied
+</FilesMatch>
+
+# Protect maintenance, diagnostic, and automation scripts
+<FilesMatch "^(check_|chk_|test_|inspect_|probe_|_probe_pt|debug_cron|compare_counts|lint_check|read_err|get_log|fix_wal|migrate_|verify_|MASTER_PROMPT|CHANGELOG)">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "^(run_publish|run_refresh|run_expand|run_actual_refresh|pre_deploy_backup|generate_articles)\.php$">
+    Require all denied
+</FilesMatch>
+
+# ==============================================================================
+# PERFORMANCE OPTIMIZATIONS (Compression & Static Caching)
+# ==============================================================================
+
 <IfModule mod_brotli.c>
     AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml font/ttf font/otf font/woff font/woff2
 </IfModule>
@@ -46,7 +142,6 @@ Options -Indexes
     </IfModule>
 </IfModule>
 
-# Static Asset Browser Caching (WebP, CSS, JS, Fonts, SVG)
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType image/webp "access plus 1 year"
@@ -64,25 +159,7 @@ Options -Indexes
     </FilesMatch>
 </IfModule>
 
-# Protect sensitive files
-<FilesMatch "^(gsc_service_account\.json|news_portal\.db)$">
-Require all denied
-</FilesMatch>
-
-# Protect diagnostic files
-<FilesMatch "^(check_|chk_|test_|inspect_|probe_|_probe_pt|debug_cron|compare_counts|lint_check|read_err|get_log|fix_wal|migrate_|verify_|MASTER_PROMPT|CHANGELOG)">
-Require all denied
-</FilesMatch>
-# Block web access to publisher/refresh scripts (Muse, 2026-10-02)
-<FilesMatch "^(run_publish|run_refresh|run_expand|run_actual_refresh|pre_deploy_backup)\.php$">
-Require all denied
-</FilesMatch>
-<FilesMatch "^generate_articles\.php$">
-Require all denied
-</FilesMatch>
-
 # php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php82” package as the default “PHP” programming language.
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
 </IfModule>
