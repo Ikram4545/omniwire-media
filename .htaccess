@@ -8,80 +8,80 @@
     RewriteBase /
 
     # --------------------------------------------------------------------------
-    # 1. CANONICAL HOST & PROTOCOL ENFORCEMENT (Single-Hop 301)
-    # Enforce HTTPS and non-WWW across all incoming requests
+    # 1. SPECIFIC EXTENSION & ALIAS REDIRECTS (Single-Hop 301 to Canonical)
+    # Evaluated first to ensure compound requests (e.g. http + www + .php) 
+    # resolve directly to the final canonical URL in exactly ONE hop.
     # --------------------------------------------------------------------------
-    RewriteCond %{HTTPS} !=on [OR]
-    RewriteCond %{HTTP:X-Forwarded-Proto} =http
-    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
+    # Sports Hub canonical URL is /sports/live
+    RewriteCond %{THE_REQUEST} \s/+sports-live\.php[\s?] [NC]
+    RewriteRule ^sports-live\.php$ https://omniwiremedia.com/sports/live [L,R=301]
+    RewriteRule ^sports-live$ https://omniwiremedia.com/sports/live [L,R=301]
 
-    RewriteCond %{HTTP_HOST} ^www\.omniwiremedia\.com$ [NC]
-    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
+    # Mobile Catalog
+    RewriteCond %{THE_REQUEST} \s/+mobiles\.php[\s?] [NC]
+    RewriteRule ^mobiles\.php$ https://omniwiremedia.com/mobiles [L,R=301]
+
+    # Evergreen Trackers
+    RewriteCond %{THE_REQUEST} \s/+gold-price\.php[\s?] [NC]
+    RewriteRule ^gold-price\.php$ https://omniwiremedia.com/gold-price-in-pakistan-today [L,R=301]
+    RewriteCond %{THE_REQUEST} \s/+petrol-price\.php[\s?] [NC]
+    RewriteRule ^petrol-price\.php$ https://omniwiremedia.com/petrol-price-in-pakistan-today [L,R=301]
+
+    # Static Pages
+    RewriteRule ^about$ https://omniwiremedia.com/about-us [L,R=301]
+    RewriteRule ^contact$ https://omniwiremedia.com/contact-us [L,R=301]
+
+    # Authors
+    RewriteRule ^author/ikram-rajput$ https://omniwiremedia.com/author/editorial-desk [L,R=301]
+    RewriteRule ^author/marcus-vance$ https://omniwiremedia.com/author/editorial-desk [L,R=301]
+
+    # Legacy Category Verticals
+    RewriteRule ^category/cybersecurity$ https://omniwiremedia.com/category/enterprise-cyber [L,R=301]
+    RewriteRule ^category/finance-crypto$ https://omniwiremedia.com/category/fintech-crypto [L,R=301]
+    RewriteRule ^category/health-wellness$ https://omniwiremedia.com/category/health-longevity [L,R=301]
+    RewriteRule ^category/sports$ https://omniwiremedia.com/category/world-sports [L,R=301]
+
+    # Specific High-Traffic Historical Article Redirects (GSC Alignment)
+    RewriteRule ^article/global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-centr-134$ https://omniwiremedia.com/article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
+    RewriteRule ^article/virat-kohli-s-chase-blueprint-how-elite-cardiovascular-conditioning-redefined-white-ball-cricket-595$ https://omniwiremedia.com/article/virat-kohli-masterclass-chases-cricket-greatest-finisher-tactical-blueprint [L,R=301]
+    RewriteRule ^article/global-supply-chain-re-shoring-nearshoring-hubs-and-automated-logistics-corridors-973$ https://omniwiremedia.com/article/why-global-supply-chain-re-shoring-has-become-the-biggest-test-for-nearshoring-hubs-and-automated-logistics-corridors-142 [L,R=301]
+    RewriteRule ^article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-724$ https://omniwiremedia.com/article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-217$ https://omniwiremedia.com/article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-945$ https://omniwiremedia.com/article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
+    RewriteRule ^article/openai-anthropic-deepmind-deploy-next-gen-autonomous-ai-coding-reasoning-architecture-337$ https://omniwiremedia.com/article/openai-deepmind-next-gen-autonomous-reasoning-models-architecture-benchmarks-and-tool-integration-556 [L,R=301]
+    RewriteRule ^article/post-quantum-cryptography-hsm-fips-203-mandates$ https://omniwiremedia.com/article/post-quantum-cryptography-migration-nist-standards-kyber-768-and-tls-1-3-implementation-roadmap-409 [L,R=301]
+    RewriteRule ^article/us-federal-reserve-interest-rate-decisions-spark-heavy-capital-rotation-into-crypto-gold-assets-780$ https://omniwiremedia.com/article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
+    RewriteRule ^article/zero-trust-quantum-computing-nist-post-quantum-cryptography-fips-203-204-harvest-now-decrypt-later$ https://omniwiremedia.com/article/quantum-computing-coherence-times-hit-new-milestone-superconducting-qubits-error-correction-710 [L,R=301]
+    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-175$ https://omniwiremedia.com/article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
+    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-313$ https://omniwiremedia.com/article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
+    RewriteRule ^article/australia-fast-bowling-trio-vs-subcontinent-spin-world-test-championship$ https://omniwiremedia.com/article/subcontinent-turners-vs-australia-s-pace-trio-tactical-breakdown-of-test-championship-pitches-352 [L,R=301]
+    RewriteRule ^article/cellular-autophagy-precision-intermittent-fasting-longevity$ https://omniwiremedia.com/article/why-stanford-longevity-protocol-is-forcing-industry-leaders-to-rethink-time-restricted-feeding-nad-precursors-and-cellular-autophagy-dynamics-348 [L,R=301]
+    RewriteRule ^article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-sleep-396$ https://omniwiremedia.com/article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-137 [L,R=301]
+    RewriteRule ^article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-972$ https://omniwiremedia.com/article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-672 [L,R=301]
+    RewriteRule ^article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-what-to-watch-for-433$ https://omniwiremedia.com/article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-season-preview [L,R=301]
+    RewriteRule ^article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-348$ https://omniwiremedia.com/article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-921 [L,R=301]
+    RewriteRule ^article/pakistan-s-filing-deadline-moves-to-october-15-as-fbr-s-ai-learns-to-cross-check-returns-365$ https://omniwiremedia.com/article/how-to-check-your-fbr-filer-status-and-what-non-filers-pay-extra-766 [L,R=301]
 
     # --------------------------------------------------------------------------
-    # 2. TRAILING SLASH NORMALIZATION
-    # Strip trailing slash from all non-directory requests to prevent duplicate content
+    # 2. PROXY SSL TERMINATION & HOST / TRAILING-SLASH CONSOLIDATION
+    # Handles Cloudflare (CF-Visitor), reverse proxy (X-Forwarded-Proto),
+    # WWW stripping and trailing slash in ONE combined pass.
     # --------------------------------------------------------------------------
+    # A. Combined Trailing Slash Normalization (Any host / proto -> Single-Hop HTTPS Non-WWW)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} ^(.+)/$
     RewriteRule ^(.+)/$ https://omniwiremedia.com/$1 [L,R=301]
 
-    # --------------------------------------------------------------------------
-    # 3. DIRECT PHP EXTENSION REDIRECTS (Single-Hop 301)
-    # Redirect direct browser accesses for .php files to preferred canonical URLs
-    # --------------------------------------------------------------------------
-    RewriteCond %{THE_REQUEST} \s/+mobiles\.php[\s?] [NC]
-    RewriteRule ^mobiles\.php$ /mobiles [L,R=301]
+    # B. Force Non-WWW (Single-Hop to non-WWW HTTPS)
+    RewriteCond %{HTTP_HOST} ^www\.omniwiremedia\.com$ [NC]
+    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
 
-    RewriteCond %{THE_REQUEST} \s/+sports-live\.php[\s?] [NC]
-    RewriteRule ^sports-live\.php$ /sports/live [L,R=301]
-
-    RewriteCond %{THE_REQUEST} \s/+gold-price\.php[\s?] [NC]
-    RewriteRule ^gold-price\.php$ /gold-price-in-pakistan-today [L,R=301]
-
-    RewriteCond %{THE_REQUEST} \s/+petrol-price\.php[\s?] [NC]
-    RewriteRule ^petrol-price\.php$ /petrol-price-in-pakistan-today [L,R=301]
-
-    # --------------------------------------------------------------------------
-    # 4. PUBLIC CANONICAL ALIASES & PERMANENT REDIRECTS (301)
-    # --------------------------------------------------------------------------
-    # Sports Hub canonical URL is /sports/live
-    RewriteRule ^sports-live$ /sports/live [L,R=301]
-
-    # Static Pages
-    RewriteRule ^about$ /about-us [L,R=301]
-    RewriteRule ^contact$ /contact-us [L,R=301]
-
-    # Authors
-    RewriteRule ^author/ikram-rajput$ /author/editorial-desk [L,R=301]
-    RewriteRule ^author/marcus-vance$ /author/editorial-desk [L,R=301]
-
-    # Legacy Category Verticals
-    RewriteRule ^category/cybersecurity$ /category/enterprise-cyber [L,R=301]
-    RewriteRule ^category/finance-crypto$ /category/fintech-crypto [L,R=301]
-    RewriteRule ^category/health-wellness$ /category/health-longevity [L,R=301]
-    RewriteRule ^category/sports$ /category/world-sports [L,R=301]
-
-    # Specific High-Traffic Historical Article Redirects (GSC Alignment)
-    RewriteRule ^article/global-macroeconomic-outlook-interest-rate-policy-shifts-across-major-centr-134$ /article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
-    RewriteRule ^article/virat-kohli-s-chase-blueprint-how-elite-cardiovascular-conditioning-redefined-white-ball-cricket-595$ /article/virat-kohli-masterclass-chases-cricket-greatest-finisher-tactical-blueprint [L,R=301]
-    RewriteRule ^article/global-supply-chain-re-shoring-nearshoring-hubs-and-automated-logistics-corridors-973$ /article/why-global-supply-chain-re-shoring-has-become-the-biggest-test-for-nearshoring-hubs-and-automated-logistics-corridors-142 [L,R=301]
-    RewriteRule ^article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-724$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
-    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-217$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
-    RewriteRule ^article/saas-net-revenue-retention-nrr-optimization-in-2026-customer-success-playbooks-and-usage-based-pricing-945$ /article/how-saas-net-revenue-retention-nrr-optimization-in-2026-changed-the-rules-for-customer-success-playbooks-and-usage-based-pricing-this-quarter-658 [L,R=301]
-    RewriteRule ^article/openai-anthropic-deepmind-deploy-next-gen-autonomous-ai-coding-reasoning-architecture-337$ /article/openai-deepmind-next-gen-autonomous-reasoning-models-architecture-benchmarks-and-tool-integration-556 [L,R=301]
-    RewriteRule ^article/post-quantum-cryptography-hsm-fips-203-mandates$ /article/post-quantum-cryptography-migration-nist-standards-kyber-768-and-tls-1-3-implementation-roadmap-409 [L,R=301]
-    RewriteRule ^article/us-federal-reserve-interest-rate-decisions-spark-heavy-capital-rotation-into-crypto-gold-assets-780$ /article/federal-reserve-monetary-policy-outlook-quantitative-tightening-real-yields-and-credit-spreads [L,R=301]
-    RewriteRule ^article/zero-trust-quantum-computing-nist-post-quantum-cryptography-fips-203-204-harvest-now-decrypt-later$ /article/quantum-computing-coherence-times-hit-new-milestone-superconducting-qubits-error-correction-710 [L,R=301]
-    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-175$ /article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
-    RewriteRule ^article/ai-powered-customer-data-platforms-cdp-first-party-identity-resolution-in-cookieless-architecture-313$ /article/hard-numbers-behind-the-push-into-ai-powered-customer-data-platforms-cdp-and-first-party-identity-resolution-in-cookieless-494 [L,R=301]
-    RewriteRule ^article/australia-fast-bowling-trio-vs-subcontinent-spin-world-test-championship$ /article/subcontinent-turners-vs-australia-s-pace-trio-tactical-breakdown-of-test-championship-pitches-352 [L,R=301]
-    RewriteRule ^article/cellular-autophagy-precision-intermittent-fasting-longevity$ /article/why-stanford-longevity-protocol-is-forcing-industry-leaders-to-rethink-time-restricted-feeding-nad-precursors-and-cellular-autophagy-dynamics-348 [L,R=301]
-    RewriteRule ^article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-sleep-396$ /article/circadian-rhythm-optimization-light-exposure-protocols-for-deep-restorative-137 [L,R=301]
-    RewriteRule ^article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-972$ /article/decentralized-ai-inference-protocols-challenge-centralized-cloud-monopolies-672 [L,R=301]
-    RewriteRule ^article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-what-to-watch-for-433$ /article/pakistan-super-league-psl-draft-dynamics-fast-bowling-resurgence-season-preview [L,R=301]
-    RewriteRule ^article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-348$ /article/inside-the-quiet-shift-around-zone-2-cardio-vo2-max-benchmarks-and-the-gold-standard-for-cardiovascular-health-and-metabolic-longevity-921 [L,R=301]
-    RewriteRule ^article/pakistan-s-filing-deadline-moves-to-october-15-as-fbr-s-ai-learns-to-cross-check-returns-365$ /article/how-to-check-your-fbr-filer-status-and-what-non-filers-pay-extra-766 [L,R=301]
+    # C. Force HTTPS (Proxy-Safe with Loop Prevention)
+    # Only redirect if direct HTTPS is off AND neither reverse proxy nor Cloudflare reports HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+    RewriteCond %{HTTP:CF-Visitor} !'"scheme":"https"' [NC]
+    RewriteRule ^ https://omniwiremedia.com%{REQUEST_URI} [L,R=301]
 
     # --------------------------------------------------------------------------
     # 5. CORE ENGINE INTERNAL REWRITE RULES (Preserve Routing Without Loops)

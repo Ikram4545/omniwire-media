@@ -3,8 +3,8 @@
  * OMNIWIRE MEDIA - LIVE SPORTS CENTER & SCORE TICKER (v1.0)
  * Real-Time Cricket Ball-by-Ball, Football Match Scores & Official Highlights
  */
-$pageTitle = "Live Cricket & Football Scores | Real-Time Match Center — OmniWire Media";
-$pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoing match commentary, live score ticker, and official video highlights on OmniWire Media.";
+$pageTitle = "Sports Match Center (Demo Simulation) — OmniWire Media";
+$pageDesc = "Interactive match simulation, scorecard prototype, and sports center UI demo on OmniWire Media.";
 ?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
@@ -40,7 +40,7 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
       </a>
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
-          <span class="w-2 h-2 rounded-full bg-amber-500"></span> MATCH SIMULATION / ARCHIVE
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span> SCORECARD PROTOTYPE / DEMO
         </span>
         <a href="/category/world-sports" class="text-xs text-slate-400 hover:text-white font-medium">Back to News</a>
       </div>
@@ -86,7 +86,7 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
             <span class="px-2.5 py-1 rounded-lg bg-amber-950/80 border border-amber-800/60 text-amber-400 text-xs font-black uppercase tracking-wider inline-flex items-center gap-1">
               DEMO SCORECARD
             </span>
-            <div id="refresh-timer" class="text-[10px] text-slate-400 mt-1 font-mono">Archive Feed &bull; Live stream activates on matchdays</div>
+            <div id="refresh-timer" class="text-[10px] text-slate-400 mt-1 font-mono">Curated Match Simulation &bull; UI Prototype</div>
           </div>
         </div>
 
@@ -229,7 +229,7 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
           ></iframe>
         </div>
         <p class="text-[11px] text-slate-400">
-          Official match highlights provided via verified broadcast licensing syndication. Real-time updates direct from the venue.
+          Official cricket highlights and match video archives embedded for demonstration purposes.
         </p>
       </div>
 
@@ -290,15 +290,14 @@ $pageDesc = "Real-time ball-by-ball live cricket scores, football results, ongoi
   <script>
     lucide.createIcons();
     
-    // Live match feed handler: checks for scheduled real-time telemetry feed
-    function initSportsFeed() {
-      // Prepared for upstream webhook / JSON feed integration
+    // Prototype handler
+    function initSportsDemo() {
       const timerEl = document.getElementById('refresh-timer');
       if (timerEl) {
-        timerEl.innerText = 'Static Match Simulation • Real-time live ball telemetry streams during scheduled matches';
+        timerEl.innerText = 'Curated Match Simulation • UI Prototype Showcase';
       }
     }
-    initSportsFeed();
+    initSportsDemo();
 
     function vote(team) {
       alert('Thank you for voting! Your prediction has been registered.');
