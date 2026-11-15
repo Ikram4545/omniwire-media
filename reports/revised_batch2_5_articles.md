@@ -111,3 +111,27 @@
    *Exact Legal Articles:* Article 21 (Cybersecurity risk-management measures) and Article 34 (Administrative fines up to €10M or 2% of annual global turnover).
 2. **Cybersecurity and Infrastructure Security Agency (CISA), FBI & NSA:** *Joint Advisory: PRC State-Sponsored Actors Compromise and Maintain Persistent Access to U.S. Critical Infrastructure (Volt Typhoon)* (Published February 7, 2024).  
    *Exact Source Passage:* Confirms state actors maintained unauthorized access inside victim IT environments for at least five years, conducting reconnaissance to enable lateral pivoting into OT networks for disruptive capability.
+
+---
+
+## 6. Reconciled GSC Baseline & Tracking Matrix
+
+### A. Site-Wide Comparison Windows (Direct GSC API Export)
+| Benchmark / Window | Exact Dates | Impressions | Clicks | Average CTR | Average Position | Status / Purpose |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **September Benchmark** | Sep 3 – Sep 30, 2026 | **590** | **11** | **1.86%** | **15.15** | Pre-collapse recovery target |
+| **October Window** | Oct 1 – Oct 28, 2026 | **134** | **6** | **4.48%** | **8.78** | Post-collapse interim |
+| **Pre-Update Baseline** | Oct 18 – Nov 14, 2026 | **90** | **5** | **5.56%** | **22.88** | **Locked pre-update baseline** |
+| **Post-Update Evaluation** | Nov 15 – Dec 12, 2026 | *Tracking* | *Tracking* | *Tracking* | *Tracking* | 28-day evaluation window |
+
+### B. Batch 2 (5 Priority Articles) Page-Wise Pre-Update Baseline (Oct 18 – Nov 14, 2026)
+*Filter: Exact canonical URLs matched against Search Console API records.*
+
+| Article / Topic (ID) | Exact Preserved Canonical URL | Pre-Update Impressions | Pre-Update Clicks | Pre-Update Position | Notes / Reconciliation Status |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **NVIDIA B200 Cooling** (ID: 110) | `/article/nvidia-blackwell-b200-superchips-in-enterprise-data-centers-liquid-cooling-thermal-engineering-analysis-177` | **2** | **0** | **9.00** | **Reconciled:** Verified in raw GSC API export |
+| **Bitcoin Spot ETF** (ID: 115) | `/article/bitcoin-institutional-liquidity-wave-spot-etf-cumulative-inflows-and-treasury-reserve-allocatio` | **0** | **0** | **N/A** | 0 impressions in 28-day window |
+| **HNDL Quantum Espionage** (ID: 95) | `/article/nation-state-cyber-espionage-harvest-now-decrypt-later` | **0** | **0** | **N/A** | 0 impressions in 28-day window |
+| **Reshoring & Automation** (ID: 119) | `/article/why-global-supply-chain-re-shoring-has-become-the-biggest-test-for-nearshoring-hubs-and-automated-logistics-corridors-142` | **0** | **0** | **N/A** | 0 impressions in 28-day window |
+| **SCADA Cyber Resilience** (ID: 114) | `/article/critical-infrastructure-cyber-resilience-scada-systems-air-gapped-networks-and-state-sponsored-` | **0** | **0** | **N/A** | 0 impressions in 28-day window |
+
