@@ -22,12 +22,20 @@ if (php_sapi_name() !== 'cli') {
     die("Forbidden: CLI execution only. Direct web execution is disabled.\n");
 }
 
-$dbPath = file_exists(__DIR__ . '/../news_portal.db') 
-    ? realpath(__DIR__ . '/../news_portal.db')
-    : (file_exists('/home/omniwiremedia/public_html/news_portal.db') ? '/home/omniwiremedia/public_html/news_portal.db' : realpath(__DIR__ . '/../live_news_portal.db'));
+// Parse optional CLI arguments: php migrate_production_db.php [path_to_db] [backup_dir]
+$targetDbArg = isset($argv[1]) && !empty($argv[1]) ? $argv[1] : null;
+$customBackupDirArg = isset($argv[2]) && !empty($argv[2]) ? $argv[2] : null;
+
+if ($targetDbArg) {
+    $dbPath = file_exists($targetDbArg) ? realpath($targetDbArg) : $targetDbArg;
+} else {
+    $dbPath = file_exists(__DIR__ . '/../news_portal.db') 
+        ? realpath(__DIR__ . '/../news_portal.db')
+        : (file_exists('/home/omniwiremedia/public_html/news_portal.db') ? '/home/omniwiremedia/public_html/news_portal.db' : realpath(__DIR__ . '/../live_news_portal.db'));
+}
 
 if (!$dbPath || !file_exists($dbPath)) {
-    fwrite(STDERR, "Error: news_portal.db not found on target path.\n");
+    fwrite(STDERR, "Error: news_portal.db not found on target path ({$dbPath}).\n");
     exit(1);
 }
 
@@ -38,15 +46,19 @@ try {
     // 2. Determine Private Backup Directory OUTSIDE Web Root
     // Production cPanel document root is /home/omniwiremedia/public_html
     // Secure non-web backup directory is /home/omniwiremedia/backups
-    $isProduction = file_exists('/home/omniwiremedia');
-    $backupDir = $isProduction ? '/home/omniwiremedia/backups' : dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'backups';
+    if ($customBackupDirArg) {
+        $backupDir = $customBackupDirArg;
+    } else {
+        $isProduction = file_exists('/home/omniwiremedia');
+        $backupDir = $isProduction ? '/home/omniwiremedia/backups' : dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'backups';
+    }
 
     if (!is_dir($backupDir)) {
         @mkdir($backupDir, 0700, true);
     }
 
-    // Fallback if parent directory is restricted/non-writable: use private database/.backups protected by .htaccess
-    if (!is_dir($backupDir) || !is_writable($backupDir)) {
+    // Fallback if parent directory is restricted/non-writable and not custom: check private database/.backups
+    if ((!is_dir($backupDir) || !is_writable($backupDir)) && !$customBackupDirArg) {
         $backupDir = __DIR__ . DIRECTORY_SEPARATOR . '.backups';
         if (!is_dir($backupDir)) {
             @mkdir($backupDir, 0700, true);
@@ -57,7 +69,19 @@ try {
         }
     }
 
+    // STRICT CHECK: Writable na ho to foran abort kare
+    if (!is_dir($backupDir) || !is_writable($backupDir)) {
+        fwrite(STDERR, "CRITICAL ERROR: Backup directory '{$backupDir}' is NOT writable or does not exist. Migration ABORTED.\n");
+        exit(1);
+    }
+
     $backupPath = rtrim($backupDir, '/\\') . DIRECTORY_SEPARATOR . 'news_portal.db.bak_' . date('Ymd_His');
+    if (file_exists($backupPath)) {
+        $backupPath = rtrim($backupDir, '/\\') . DIRECTORY_SEPARATOR . 'news_portal.db.bak_' . date('Ymd_His') . '_' . substr(str_replace('.', '', microtime(true)), -4);
+        if (file_exists($backupPath)) {
+            @unlink($backupPath);
+        }
+    }
 
     // 3. WAL-Consistent Backup Generation via VACUUM INTO
     // Flush any pending transactions from the -wal journal to the main db file
