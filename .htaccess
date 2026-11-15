@@ -108,8 +108,8 @@
 # SECURITY DIRECTIVES
 # ==============================================================================
 
-# Block direct browser access to SQLite database files, logs, and backups
-<FilesMatch "\.(db|sqlite|sqlite3|log|bak)$">
+# Block direct browser access to SQLite database files, logs, and backups (including timestamped .bak_*)
+<FilesMatch "(\.(db|sqlite|sqlite3|log|bak)($|_)|bak_)">
     Require all denied
 </FilesMatch>
 

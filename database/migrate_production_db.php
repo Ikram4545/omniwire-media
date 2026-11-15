@@ -35,37 +35,60 @@ try {
     $db = new PDO('sqlite:' . $dbPath);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 2. WAL-Consistent Backup Generation
+    // 2. Determine Private Backup Directory OUTSIDE Web Root
+    // Production cPanel document root is /home/omniwiremedia/public_html
+    // Secure non-web backup directory is /home/omniwiremedia/backups
+    $isProduction = file_exists('/home/omniwiremedia');
+    $backupDir = $isProduction ? '/home/omniwiremedia/backups' : dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'backups';
+
+    if (!is_dir($backupDir)) {
+        @mkdir($backupDir, 0700, true);
+    }
+
+    // Fallback if parent directory is restricted/non-writable: use private database/.backups protected by .htaccess
+    if (!is_dir($backupDir) || !is_writable($backupDir)) {
+        $backupDir = __DIR__ . DIRECTORY_SEPARATOR . '.backups';
+        if (!is_dir($backupDir)) {
+            @mkdir($backupDir, 0700, true);
+        }
+        $protectFile = $backupDir . DIRECTORY_SEPARATOR . '.htaccess';
+        if (!file_exists($protectFile)) {
+            @file_put_contents($protectFile, "Order deny,allow\nDeny from all\nRequire all denied\n");
+        }
+    }
+
+    $backupPath = rtrim($backupDir, '/\\') . DIRECTORY_SEPARATOR . 'news_portal.db.bak_' . date('Ymd_His');
+
+    // 3. WAL-Consistent Backup Generation via VACUUM INTO
     // Flush any pending transactions from the -wal journal to the main db file
     try {
         $db->exec("PRAGMA wal_checkpoint(TRUNCATE);");
     } catch (Exception $e) {
-        // Ignore if journal_mode is not WAL
+        // Continue if journal_mode is not WAL
     }
 
-    $backupPath = $dbPath . '.bak_' . date('Ymd_His');
-    if (file_exists($backupPath)) {
-        @unlink($backupPath);
-    }
-
-    // Atomic point-in-time snapshot via VACUUM INTO
+    // Atomic point-in-time snapshot via VACUUM INTO.
+    // CRITICAL: If VACUUM INTO fails, migration MUST ABORT immediately.
+    // Plain copy() is STRICTLY PROHIBITED because in WAL mode it risks missing uncommitted/active WAL frames.
     try {
         $db->exec("VACUUM INTO " . $db->quote($backupPath));
     } catch (Exception $e) {
-        // Fallback for legacy SQLite versions lacking VACUUM INTO
-        if (!copy($dbPath, $backupPath)) {
-            throw new Exception("Database file copy failed: " . $e->getMessage());
-        }
+        fwrite(STDERR, "CRITICAL ERROR: Atomic VACUUM INTO backup failed: " . $e->getMessage() . "\n");
+        fwrite(STDERR, "Migration ABORTED to protect database consistency. No modifications made.\n");
+        exit(1);
     }
 
     if (!file_exists($backupPath) || filesize($backupPath) === 0) {
-        throw new Exception("Backup verification failed: created backup file is empty or missing.");
+        fwrite(STDERR, "CRITICAL ERROR: Backup verification failed - target file is missing or empty: {$backupPath}\n");
+        fwrite(STDERR, "Migration ABORTED.\n");
+        exit(1);
     }
 
+    @chmod($backupPath, 0600);
     $backupSize = filesize($backupPath);
-    echo "✓ Consistent backup created: {$backupPath} ({$backupSize} bytes)\n";
+    echo "✓ Consistent backup created outside web root: {$backupPath} ({$backupSize} bytes)\n";
 
-    // 3. Begin Transaction
+    // 4. Begin Transaction
     $db->beginTransaction();
 
     // 4. Re-align brand_id mapping
