@@ -4514,8 +4514,8 @@ if (!function_exists('detectInboundLeadOrigin')) {
         }
         if (stripos($checkTarget, '/contact') !== false) {
             return [
-                'label' => 'Origin: Contact Desk [/contact]',
-                'url'   => '/contact'
+                'label' => 'Origin: Contact Desk [/contact-us]',
+                'url'   => '/contact-us'
             ];
         }
         return [
@@ -5599,19 +5599,19 @@ if (!function_exists('composeOutreachPitch')) {
         
         if (stripos($niche, 'cyber') !== false || stripos($niche, 'security') !== false) {
             $hook = "managing cybersecurity, cloud defense, and B2B technical SEO campaigns.";
-            $sampleUrl = "https://omniwiremedia.com/category/cybersecurity";
+            $sampleUrl = "https://omniwiremedia.com/category/enterprise-cyber";
             $topic = "Cyber Security, Cloud & Zero-Trust Architecture";
         } elseif (stripos($niche, 'saas') !== false || stripos($niche, 'business') !== false || stripos($niche, 'cloud') !== false) {
             $hook = "building high-authority Do-Follow backlinks and digital PR placements for SaaS and B2B brands.";
-            $sampleUrl = "https://omniwiremedia.com/category/digital-business";
+            $sampleUrl = "https://omniwiremedia.com/category/ai-tech";
             $topic = "Digital Business, SaaS & B2B Growth";
         } elseif (stripos($niche, 'fintech') !== false || stripos($niche, 'finance') !== false || stripos($niche, 'crypto') !== false) {
             $hook = "running FinTech, Web3, and crypto media outreach & contextual link-building campaigns.";
-            $sampleUrl = "https://omniwiremedia.com/category/finance-crypto";
+            $sampleUrl = "https://omniwiremedia.com/category/fintech-crypto";
             $topic = "Finance, Gold, FinTech & Crypto Markets";
         } elseif (stripos($niche, 'sport') !== false || stripos($niche, 'health') !== false) {
             $hook = "curating high-traffic editorial placements in sports analytics and longevity wellness.";
-            $sampleUrl = "https://omniwiremedia.com/category/sports";
+            $sampleUrl = "https://omniwiremedia.com/category/world-sports";
             $topic = "World Sports & Health Longevity";
         }
         
@@ -19828,8 +19828,8 @@ if ($path === '/write-for-us') {
             $computedOriginLabel = 'Origin: Article [' . $refPath . ']';
             $computedSourceUrl = $refPath;
         } elseif (str_contains($refPath, '/contact')) {
-            $computedOriginLabel = 'Origin: Contact Desk [/contact]';
-            $computedSourceUrl = '/contact';
+            $computedOriginLabel = 'Origin: Contact Desk [/contact-us]';
+            $computedSourceUrl = '/contact-us';
         }
     }
     ob_start();

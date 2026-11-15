@@ -510,8 +510,14 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
 
           <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80 text-xs text-slate-300 flex items-start gap-2.5">
             <i data-lucide="info" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-            <div>
-              <span class="font-bold text-white">How to generate your PSID:</span> Dial <code class="bg-slate-800 px-1.5 py-0.5 rounded text-amber-400 font-bold">*8484#</code> from your phone or visit <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">dirbs.pta.gov.pk</a>. Pay the tax via JazzCash, Easypaisa, 1Link ATM, or Internet Banking within 30 days to avoid device blocking.
+            <div class="w-full">
+              <div>
+                <span class="font-bold text-white">How to generate your PSID:</span> Dial <code class="bg-slate-800 px-1.5 py-0.5 rounded text-amber-400 font-bold">*8484#</code> from your phone or visit <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">dirbs.pta.gov.pk</a>. Pay the tax via JazzCash, Easypaisa, 1Link ATM, or Internet Banking within 30 days to avoid device blocking.
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-slate-800/70 text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-2">
+                <span><strong>Source:</strong> FBR Customs Tariff Schedules & PTA DIRBS C&F Slabs</span>
+                <span class="text-emerald-400 flex items-center gap-1 font-semibold"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified November 2026 (Finance Act Schedule)</span>
+              </div>
             </div>
           </div>
         </div>

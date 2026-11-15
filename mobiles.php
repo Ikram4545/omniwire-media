@@ -148,7 +148,7 @@ function fmtPrice($n) {
             <?= count($devices) ?> Models Live
           </span>
         </h1>
-        <p class="text-xs text-slate-400 mt-1">Official retail prices, 360° interactive 3D model viewer, technical specs, and verified FBR PTA tax calculator slabs.</p>
+        <p class="text-xs text-slate-400 mt-1">Official retail prices, 360° interactive 3D model viewer, technical specs, and verified FBR &amp; PTA DIRBS duty slabs <span class="text-emerald-400 font-semibold">&bull; Updated November 2026</span>.</p>
       </div>
 
       <!-- FILTER CONTROLS -->

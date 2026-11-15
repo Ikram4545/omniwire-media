@@ -1,5 +1,5 @@
 <?php
-// Petrol Price in Pakistan Today — standalone utility page, cloned from gold-price.php pattern
+// Petrol Price in Pakistan Today — standalone utility page
 // Verified prices: OGRA / Petroleum Division notification effective 5 November 2026 (notification issued 4 November 2026; no end date asserted - sources phrase validity as for 5 November)
 // Multi-source agreement checked 5 Nov 2026 (~20:30 PKT, scheduled run): The News full page citing the OGRA notification (petrol 369.06 to 362.00 -7.06, HSD 391.52 to 387.81 -3.71, effective Nov 5), Islamabad Post full page citing the OGRA notification (same figures, same changes, full table, effective Nov 5) all agree. Corroborated by Business Recorder (via PakGold/danioPSX), Mettis Global via Investify, Green Post, The Standard, TechX, Taaza Taren, Pakistan Point, 247News. No conflict on the NEW petrol/diesel figures. Disregarded: Pakistan Today / PakObserver "Rs 7.6" typo in the delta text (final price Rs 362 matches all sources); Pakistan Today diesel "from Rs387.81 to Rs387.81" typo (final figure matches). Kerosene/LDO: no 5 Nov change in the petrol/diesel notification reporting; Pakistan Today fuel page effective 5 Nov lists 323.67/269.09, carried unchanged from the verified 3 Nov revision.
 $effective_date = '5 November 2026';
