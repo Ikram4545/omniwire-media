@@ -59,14 +59,13 @@
 ### Direct Answer Opening (Featured Snippet Target)
 > "Harvest Now, Decrypt Later" (HNDL)—also termed "Store Now, Decrypt Later"—is a state-sponsored cyber espionage strategy where intelligence agencies exfiltrate and archive encrypted communications today, with the operational intent to decrypt the stored ciphertext once a Cryptanalytically Relevant Quantum Computer (CRQC) becomes functional. The strategy prioritizes intelligence assets whose operational secrecy must endure for 20 to 50 years—such as military weapon designs, nuclear telemetry, diplomatic traffic, and critical infrastructure blueprints.
 >
-> In the official **Joint Cybersecurity Information Sheet (CSI) issued by CISA, the NSA, and NIST on August 21, 2023** (titled *"Quantum-Readiness: Migration to Post-Quantum Cryptography"*), federal defense agencies formally warned:
-> *"A Cryptanalytically Relevant Quantum Computer will have the capability to break public key cryptography currently used on internet protocols. Adversaries are already capturing and storing encrypted data today to decrypt once a CRQC becomes available—a technique known as 'harvest now, decrypt later'."*
+> In the official **Joint Cybersecurity Information Sheet (CSI) issued by CISA, the NSA, and NIST on August 21, 2023** (titled *"Quantum-Readiness: Migration to Post-Quantum Cryptography"*), federal defense agencies formally warned that a Cryptanalytically Relevant Quantum Computer will possess the capability to break public-key cryptography currently securing internet protocols. Adversaries are actively capturing and storing encrypted communications today to decrypt them once a CRQC becomes operational.
 >
 > In accordance with White House National Security Memorandum 10 (NSM-10) and OMB Memorandum M-23-02, government and defense industrial base operators are legally mandated to inventory quantum-vulnerable systems and prioritize transition toward post-quantum hybrid standards (NIST FIPS 203 ML-KEM) to prevent retroactive decryption of intercepted traffic.
 
 ### Verified Source Passages & Citations
 1. **National Security Agency (NSA), Cybersecurity and Infrastructure Security Agency (CISA) & NIST:** *Joint Cybersecurity Information Sheet: Quantum-Readiness: Migration to Post-Quantum Cryptography* (Published August 21, 2023).  
-   *Exact Source Quote:* "A Cryptanalytically Relevant Quantum Computer will have the capability to break public key cryptography currently used on internet protocols. Adversaries are already capturing and storing encrypted data today to decrypt once a CRQC becomes available—a technique known as 'harvest now, decrypt later'."
+   *Official Guidance Citation:* Explains CRQC threats to asymmetric encryption and warns of adversaries capturing and archiving encrypted data today for future decryption. Direct PDF Link: [NSA/CISA/NIST CSI PDF (August 21, 2023)](https://media.defense.gov/2023/Aug/21/2003284212/-1/-1/0/CSI_QUANTUM_READINESS_MIGRATION_TO_PQC.PDF)
 2. **Executive Office of the President (White House):** *National Security Memorandum on Promoting United States Leadership in Quantum Computing (NSM-10)* (Issued May 4, 2022).
 
 ---
