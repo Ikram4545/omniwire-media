@@ -8,6 +8,12 @@
     RewriteBase /
 
     # --------------------------------------------------------------------------
+    # RENTAL DASHBOARD PORTAL LOCKDOWN (Temporarily Hidden)
+    # Redirect all dashboard requests to home page so the portal is invisible.
+    # --------------------------------------------------------------------------
+    RewriteRule ^dashboard(/.*)?$ https://omniwiremedia.com/ [R=302,L]
+
+    # --------------------------------------------------------------------------
     # 1. SPECIFIC EXTENSION & ALIAS REDIRECTS (Single-Hop 301 to Canonical)
     # Evaluated first to ensure compound requests (e.g. http + www + .php) 
     # resolve directly to the final canonical URL in exactly ONE hop.
