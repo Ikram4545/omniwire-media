@@ -148,7 +148,7 @@ function fmtPrice($n) {
             <?= count($devices) ?> Models Live
           </span>
         </h1>
-        <p class="text-xs text-slate-400 mt-1">Official retail prices, 360° interactive 3D model viewer, technical specs, and verified FBR &amp; PTA DIRBS duty slabs <span class="text-emerald-400 font-semibold">&bull; Updated November 2026</span>.</p>
+        <p class="text-xs text-slate-400 mt-1">Official retail prices, 360° interactive 3D model viewer, technical specs, and estimated <a href="https://www.fbr.gov.pk/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">FBR</a> &amp; <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">PTA DIRBS</a> customs duty slabs <span class="text-emerald-400 font-semibold">&bull; Verified Rates (Finance Act Schedule)</span>.</p>
       </div>
 
       <!-- FILTER CONTROLS -->
@@ -224,11 +224,11 @@ function fmtPrice($n) {
               <!-- PTA TAX CARD (EXCLUSIVE FEATURE) -->
               <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px] space-y-1">
                 <div class="flex items-center justify-between text-slate-300 font-semibold">
-                  <span class="text-slate-400">Passport PTA Tax:</span>
+                  <span class="text-slate-400">Est. Passport Duty:</span>
                   <span class="text-emerald-400 font-mono font-bold"><?= fmtPrice($d['pta_passport_tax']) ?></span>
                 </div>
                 <div class="flex items-center justify-between text-slate-300 font-semibold">
-                  <span class="text-slate-400">CNIC PTA Tax:</span>
+                  <span class="text-slate-400">Est. CNIC Duty:</span>
                   <span class="text-amber-400 font-mono font-bold"><?= fmtPrice($d['pta_cnic_tax']) ?></span>
                 </div>
               </div>

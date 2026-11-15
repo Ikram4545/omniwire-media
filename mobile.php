@@ -475,19 +475,19 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
                 <i data-lucide="shield-alert" class="w-4 h-4"></i>
               </div>
               <div>
-                <h3 class="text-base font-bold text-white">Official FBR PTA Mobile Tax Slabs</h3>
-                <p class="text-xs text-slate-400">Mandatory DIRBS registration customs duty for IMEI activation</p>
+                <h3 class="text-base font-bold text-white">Estimated FBR PTA Mobile Tax Slabs</h3>
+                <p class="text-xs text-slate-400">Estimated DIRBS registration customs duty for IMEI activation</p>
               </div>
             </div>
             <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-black uppercase tracking-wider">
-              Verified FBR
+              Estimated Duty
             </span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800">
               <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
-                <span>Passport Registration:</span>
+                <span>Estimated Passport Duty:</span>
                 <i data-lucide="plane" class="w-3.5 h-3.5 text-emerald-400"></i>
               </div>
               <div class="text-2xl font-black text-emerald-400 font-mono mt-1">
@@ -498,7 +498,7 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
 
             <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800">
               <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
-                <span>CNIC Registration:</span>
+                <span>Estimated CNIC Duty:</span>
                 <i data-lucide="id-card" class="w-3.5 h-3.5 text-amber-400"></i>
               </div>
               <div class="text-2xl font-black text-amber-400 font-mono mt-1">
@@ -512,12 +512,13 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
             <i data-lucide="info" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
             <div class="w-full">
               <div>
-                <span class="font-bold text-white">How to generate your PSID:</span> Dial <code class="bg-slate-800 px-1.5 py-0.5 rounded text-amber-400 font-bold">*8484#</code> from your phone or visit <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">dirbs.pta.gov.pk</a>. Pay the tax via JazzCash, Easypaisa, 1Link ATM, or Internet Banking within 30 days to avoid device blocking.
+                <span class="font-bold text-white">How to generate your PSID:</span> Dial <code class="bg-slate-800 px-1.5 py-0.5 rounded text-amber-400 font-bold">*8484#</code> from your phone or visit <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">dirbs.pta.gov.pk</a>. Pay the duty via JazzCash, Easypaisa, 1Link ATM, or Internet Banking within 30 days to avoid device blocking.
               </div>
               <div class="mt-2.5 pt-2 border-t border-slate-800/70 text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-2">
-                <span><strong>Source:</strong> FBR Customs Tariff Schedules & PTA DIRBS C&F Slabs</span>
-                <span class="text-emerald-400 flex items-center gap-1 font-semibold"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified November 2026 (Finance Act Schedule)</span>
+                <span><strong>Direct Sources:</strong> <a href="https://www.fbr.gov.pk/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">FBR Mobile Customs Duty Slabs</a> &amp; <a href="https://dirbs.pta.gov.pk/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">PTA DIRBS Tariff</a></span>
+                <span class="text-emerald-400 flex items-center gap-1 font-semibold"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified Rates (Finance Act Schedule)</span>
               </div>
+              <p class="text-[10px] text-slate-500 mt-1.5 italic">* Note: Exact payable duties are determined by FBR WeBOC assessment based on declared C&amp;F USD value at the time of PSID generation.</p>
             </div>
           </div>
         </div>
