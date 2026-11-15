@@ -519,6 +519,18 @@ $canonicalUrl = 'https://omniwiremedia.com/mobile/' . htmlspecialchars($device['
                 <span class="text-emerald-400 flex items-center gap-1 font-semibold"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified Rates (Finance Act Schedule)</span>
               </div>
               <p class="text-[10px] text-slate-500 mt-1.5 italic">* Note: Exact payable duties are determined by FBR WeBOC assessment based on declared C&amp;F USD value at the time of PSID generation.</p>
+              <!-- Related Practical PTA Guides -->
+              <div class="mt-3 pt-2.5 border-t border-slate-800/80 text-[11px] text-slate-400">
+                <span class="font-bold text-slate-300 block mb-1.5">Official Registration &amp; Buyer Guides:</span>
+                <div class="flex flex-wrap gap-2 text-xs">
+                  <a href="/article/passport-vs-cnic-phone-registration-pakistan-fbr-tax-slabs-dirbs-duty-guide" class="text-emerald-400 hover:underline">Passport vs. CNIC Duty Differences &rarr;</a>
+                  <span class="text-slate-600">&bull;</span>
+                  <a href="/article/how-to-check-dirbs-imei-status-before-buying-used-phone-pakistan-guide" class="text-amber-400 hover:underline">How to Check DIRBS Status &rarr;</a>
+                  <span class="text-slate-600">&bull;</span>
+                  <a href="/article/how-to-calculate-total-cost-imported-phone-fbr-pta-duty-estimator" class="text-sky-400 hover:underline">Total Import Cost Formula &rarr;</a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

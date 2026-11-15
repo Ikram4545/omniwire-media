@@ -177,6 +177,51 @@ function fmtPrice($n) {
       </div>
     </div>
 
+    <!-- PRACTICAL BUYER & PTA TAX GUIDES -->
+    <div class="mb-8 p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-slate-800 shadow-xl">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold uppercase tracking-wider">Buyer Knowledge Hub</span>
+          <h2 class="text-xs sm:text-sm font-bold text-white">Essential FBR Customs &amp; PTA DIRBS Registration Guides</h2>
+        </div>
+        <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">Verified Rates (Finance Act Schedule)</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <a href="/article/passport-vs-cnic-phone-registration-pakistan-fbr-tax-slabs-dirbs-duty-guide" class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-emerald-500/50 transition group flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] text-emerald-400 font-bold uppercase mb-1">Tax Slabs Guide</div>
+            <div class="font-bold text-white group-hover:text-emerald-400 transition leading-snug">Passport vs. CNIC Mobile Registration: Rules &amp; Duty Differences</div>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>60-day travel rule explained</span>
+            <span class="text-emerald-400 group-hover:translate-x-0.5 transition">→</span>
+          </div>
+        </a>
+
+        <a href="/article/how-to-check-dirbs-imei-status-before-buying-used-phone-pakistan-guide" class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-amber-500/50 transition group flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] text-amber-400 font-bold uppercase mb-1">IMEI Verification</div>
+            <div class="font-bold text-white group-hover:text-amber-400 transition leading-snug">How to Check DIRBS IMEI Status Before Buying a Used Phone</div>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>*#06#, 8484 SMS &amp; CPID risks</span>
+            <span class="text-amber-400 group-hover:translate-x-0.5 transition">→</span>
+          </div>
+        </a>
+
+        <a href="/article/how-to-calculate-total-cost-imported-phone-fbr-pta-duty-estimator" class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-sky-500/50 transition group flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] text-sky-400 font-bold uppercase mb-1">Cost Estimator</div>
+            <div class="font-bold text-white group-hover:text-sky-400 transition leading-snug">Calculate Total Landed Cost of an Imported Smartphone</div>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>C&amp;F valuation, duty &amp; 25% sales tax</span>
+            <span class="text-sky-400 group-hover:translate-x-0.5 transition">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <!-- MOBILE DEVICE GRID (68 PHONES) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="mobile-grid">
       <?php foreach ($devices as $d): ?>
