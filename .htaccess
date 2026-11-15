@@ -92,6 +92,9 @@
     RewriteRule ^mobile/([^/]+)$ mobile.php?slug=$1 [L,QSA]
     RewriteRule ^sports/live$ sports-live.php [L]
 
+    # Block direct web access to database directory and migration scripts
+    RewriteRule ^database/ - [F,L]
+
     # Allow direct access to real existing files and directories
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d

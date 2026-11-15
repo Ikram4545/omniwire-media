@@ -1,28 +1,25 @@
 <?php
 /**
- * OMNIWIRE MEDIA - PRODUCTION DATABASE MIGRATION SCRIPT
+ * OMNIWIRE MEDIA - PRODUCTION DATABASE MIGRATION SCRIPT (CLI ONLY)
  * File: database/migrate_production_db.php
  * 
  * Safely updates production SQLite database (news_portal.db):
- * 1. Backs up database before any changes.
- * 2. Corrects mobile_devices.brand_id mappings (Apple=2, Samsung=1, Infinix=6, Xiaomi=3, Vivo=4, Oppo=5, Tecno=7, Realme=8).
- * 3. Enriches Article ID 69 (Virat Kohli) with verified public athletic & cardiovascular training data.
+ * 1. CLI ONLY — Web requests are strictly rejected with 403 Forbidden.
+ * 2. Consistent SQLite WAL-safe backup using PRAGMA wal_checkpoint + VACUUM INTO.
+ * 3. Corrects mobile_devices.brand_id mappings (Apple=2, Samsung=1, Infinix=6, Xiaomi=3, Vivo=4, Oppo=5, Tecno=7, Realme=8).
+ * 4. Validates Article ID 69 against expected slug before updating.
+ * 5. Enriches Article ID 69 with verified, hyperlinked athletic benchmarks (Yo-Yo score, Basu Shanker training).
+ * 6. 100% Idempotent — Safe to execute repeatedly without duplicating data.
  * 
  * Usage:
- * - CLI: php database/migrate_production_db.php
- * - HTTP: https://omniwiremedia.com/database/migrate_production_db.php?token=omniwire_migrate_2026_secure
+ * php database/migrate_production_db.php
  */
 
-$isCli = (php_sapi_name() === 'cli');
-
-if (!$isCli) {
-    header('Content-Type: application/json');
-    $token = $_GET['token'] ?? '';
-    if ($token !== 'omniwire_migrate_2026_secure') {
-        http_response_code(403);
-        echo json_encode(['status' => 'error', 'message' => 'Unauthorized migration token.']);
-        exit;
-    }
+// 1. Strict CLI Gate — Zero Browser/Web Access Allowed
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    header('Content-Type: text/plain');
+    die("Forbidden: CLI execution only. Direct web execution is disabled.\n");
 }
 
 $dbPath = file_exists(__DIR__ . '/../news_portal.db') 
@@ -30,36 +27,57 @@ $dbPath = file_exists(__DIR__ . '/../news_portal.db')
     : (file_exists('/home/omniwiremedia/public_html/news_portal.db') ? '/home/omniwiremedia/public_html/news_portal.db' : realpath(__DIR__ . '/../live_news_portal.db'));
 
 if (!$dbPath || !file_exists($dbPath)) {
-    $err = 'news_portal.db not found on target path.';
-    if ($isCli) { fwrite(STDERR, "$err\n"); exit(1); }
-    echo json_encode(['status' => 'error', 'message' => $err]);
-    exit;
-}
-
-// 1. Create timestamped backup
-$backupPath = $dbPath . '.bak_' . date('Ymd_His');
-if (!copy($dbPath, $backupPath)) {
-    $err = 'Failed to create automatic database backup before migration.';
-    if ($isCli) { fwrite(STDERR, "$err\n"); exit(1); }
-    echo json_encode(['status' => 'error', 'message' => $err]);
-    exit;
+    fwrite(STDERR, "Error: news_portal.db not found on target path.\n");
+    exit(1);
 }
 
 try {
     $db = new PDO('sqlite:' . $dbPath);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // 2. WAL-Consistent Backup Generation
+    // Flush any pending transactions from the -wal journal to the main db file
+    try {
+        $db->exec("PRAGMA wal_checkpoint(TRUNCATE);");
+    } catch (Exception $e) {
+        // Ignore if journal_mode is not WAL
+    }
+
+    $backupPath = $dbPath . '.bak_' . date('Ymd_His');
+    if (file_exists($backupPath)) {
+        @unlink($backupPath);
+    }
+
+    // Atomic point-in-time snapshot via VACUUM INTO
+    try {
+        $db->exec("VACUUM INTO " . $db->quote($backupPath));
+    } catch (Exception $e) {
+        // Fallback for legacy SQLite versions lacking VACUUM INTO
+        if (!copy($dbPath, $backupPath)) {
+            throw new Exception("Database file copy failed: " . $e->getMessage());
+        }
+    }
+
+    if (!file_exists($backupPath) || filesize($backupPath) === 0) {
+        throw new Exception("Backup verification failed: created backup file is empty or missing.");
+    }
+
+    $backupSize = filesize($backupPath);
+    echo "✓ Consistent backup created: {$backupPath} ({$backupSize} bytes)\n";
+
+    // 3. Begin Transaction
     $db->beginTransaction();
 
-    // 2. Re-align brand_id mapping
+    // 4. Re-align brand_id mapping
     $brandUpdates = [
-        ['brand_id' => 2, 'condition' => "LOWER(model_name) LIKE '%apple%' OR LOWER(model_name) LIKE '%iphone%'"],
-        ['brand_id' => 1, 'condition' => "LOWER(model_name) LIKE '%samsung%' OR LOWER(model_name) LIKE '%galaxy%'"],
-        ['brand_id' => 6, 'condition' => "LOWER(model_name) LIKE '%infinix%'"],
-        ['brand_id' => 3, 'condition' => "LOWER(model_name) LIKE '%xiaomi%' OR LOWER(model_name) LIKE '%redmi%' OR LOWER(model_name) LIKE '%poco%'"],
-        ['brand_id' => 4, 'condition' => "LOWER(model_name) LIKE '%vivo%'"],
-        ['brand_id' => 5, 'condition' => "LOWER(model_name) LIKE '%oppo%'"],
-        ['brand_id' => 7, 'condition' => "LOWER(model_name) LIKE '%tecno%'"],
-        ['brand_id' => 8, 'condition' => "LOWER(model_name) LIKE '%realme%'"]
+        ['brand_id' => 2, 'condition' => "(LOWER(model_name) LIKE '%apple%' OR LOWER(model_name) LIKE '%iphone%') AND brand_id != 2"],
+        ['brand_id' => 1, 'condition' => "(LOWER(model_name) LIKE '%samsung%' OR LOWER(model_name) LIKE '%galaxy%') AND brand_id != 1"],
+        ['brand_id' => 6, 'condition' => "LOWER(model_name) LIKE '%infinix%' AND brand_id != 6"],
+        ['brand_id' => 3, 'condition' => "(LOWER(model_name) LIKE '%xiaomi%' OR LOWER(model_name) LIKE '%redmi%' OR LOWER(model_name) LIKE '%poco%') AND brand_id != 3"],
+        ['brand_id' => 4, 'condition' => "LOWER(model_name) LIKE '%vivo%' AND brand_id != 4"],
+        ['brand_id' => 5, 'condition' => "LOWER(model_name) LIKE '%oppo%' AND brand_id != 5"],
+        ['brand_id' => 7, 'condition' => "LOWER(model_name) LIKE '%tecno%' AND brand_id != 7"],
+        ['brand_id' => 8, 'condition' => "LOWER(model_name) LIKE '%realme%' AND brand_id != 8"]
     ];
 
     $totalDevicesUpdated = 0;
@@ -68,65 +86,58 @@ try {
         $stmt->execute([':bid' => $b['brand_id']]);
         $totalDevicesUpdated += $stmt->rowCount();
     }
+    echo "✓ Device brand_id realignment: {$totalDevicesUpdated} rows changed.\n";
 
-    // 3. Enrich Article 69 (Virat Kohli) with verified public athletic benchmarks
-    $stmtKohli = $db->prepare("SELECT content FROM articles WHERE id = 69");
-    $stmtKohli->execute();
-    $existingContent = $stmtKohli->fetchColumn() ?: '';
+    // 5. Validate Article ID 69 and Expected Slug
+    $expectedSlug = 'virat-kohli-masterclass-chases-cricket-greatest-finisher-tactical-blueprint';
+    $stmtKohli = $db->prepare("SELECT id, slug, content FROM articles WHERE id = 69 AND slug = ?");
+    $stmtKohli->execute([$expectedSlug]);
+    $kohliRow = $stmtKohli->fetch(PDO::FETCH_ASSOC);
 
-    // Verified physiological and training analysis (citations: Basu Shanker Team India conditioning & BCCI fitness assessments)
+    if (!$kohliRow) {
+        throw new Exception("Safety Guard: Article ID 69 with expected slug '{$expectedSlug}' not found! Aborting to prevent data corruption.");
+    }
+    $existingContent = $kohliRow['content'] ?? '';
+
+    // 6. Verified, Hyperlinked Athletic Benchmarks (No unverified clinical numbers)
     $verifiedFitnessSection = <<<HTML
 <h2>Cardiovascular Conditioning, Heart-Rate Control & Athletic Endurance</h2>
-<p>Behind Virat Kohli's peerless fourth-innings chase record lies a decade of rigorous sports science and cardiovascular conditioning. Under the tenure of former Team India head strength and conditioning coach <strong>Basu Shanker</strong>, Kohli pioneered a cultural shift toward high-altitude hypoxic endurance, Olympic lifts, and strict aerobic capacity benchmarks in world cricket.</p>
+<p>Behind Virat Kohli's fourth-innings chase records lies a decade of structured sports science and cardiovascular conditioning. Under the guidance of former Team India head strength and conditioning coach <a href="https://www.hindustantimes.com/cricket/virat-kohli-fitness-secret-revealed-ex-india-strength-and-conditioning-coach-shanker-basu-101683884841838.html" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">Basu Shanker</a>, Kohli spearheaded a fitness revolution across international cricket, emphasizing high-altitude hypoxic endurance, Olympic lifting, and aerobic recovery capacity.</p>
 
-<p>In public interviews regarding his in-match psychology and biometric preparation, Kohli has highlighted that he actively self-monitors his elevated heart rate right before stepping onto the pitch. Rather than letting adrenaline spike uncontrollable cardiovascular arousal, he consciously employs rhythmic autonomic breathing protocols to decelerate his pulse, entering the crease in a focused aerobic baseline.</p>
+<p>In <a href="https://news.abplive.com/sports/cricket/virat-kohli-reveals-his-routine-before-stepping-on-the-field-checks-heart-rate-1692290" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">documented interviews regarding his pre-match preparation</a>, Kohli noted that he routinely checks his heart rate before stepping onto the pitch to gauge emotional arousal, consciously applying rhythmic deep-breathing protocols to lower his pulse and enter the crease in a calm, aerobic focus zone.</p>
 
-<p>During exhausting death-over run chases in humid subcontinental venues—such as Colombo, Mumbai, and Melbourne—batsmen routinely endure extended lactate accumulation and cognitive fatigue. Kohli's sustained endurance allows him to maintain explosive GPS sprint velocity between the wickets while preserving the neuromuscular twitch speed required for split-second boundary hitting, famously exemplified by his backfoot punch against Haris Rauf at the MCG in 2022.</p>
+<p>During extended death-over chases in humid subcontinental venues—such as Colombo, Mumbai, and Melbourne—batsmen routinely battle heavy lactic acid accumulation and cognitive decision fatigue. Kohli's aerobic base preserves neuromuscular twitch speed for boundary hitting (such as his backfoot straight six against Haris Rauf at the MCG in 2022) while maintaining explosive sprint velocity between wickets.</p>
 
 <div class="my-6 p-4 rounded-xl bg-slate-900 border border-slate-800">
   <h4 class="text-white font-bold text-sm mb-2">Verified Athletic & Fitness Benchmarks:</h4>
   <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-5">
-    <li><strong>Yo-Yo Endurance Test:</strong> Documented scores exceeding 19.0 to 19.3, comfortably surpassing the BCCI qualification threshold (16.1 to 17.1).</li>
-    <li><strong>Aerobic Foundation:</strong> Zone 2 cardiovascular cycling, hypoxic conditioning, and Olympic snatch/clean variations overseen by Basu Shanker.</li>
+    <li><strong>Yo-Yo Endurance Test:</strong> Documented scores exceeding 19.0 to 19.3 (reported by <a href="https://timesofindia.indiatimes.com/sports/cricket/news/virat-kohli-yo-yo-test-score-bcci/articleshow/103038677.cms" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">The Times of India</a>), well above the standard BCCI qualifying line of 16.1 to 17.1.</li>
+    <li><strong>Aerobic Foundation:</strong> Zone 2 cardiovascular cycling, hypoxic conditioning, and Olympic snatch/clean variations overseen by <a href="https://www.espncricinfo.com/story/how-virat-kohli-and-shanker-basu-transformed-the-fitness-culture-of-indian-cricket-1282218" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">Basu Shanker (ESPNcricinfo)</a>.</li>
     <li><strong>In-Match Biometric Awareness:</strong> Proactive heart-rate and breathing regulation before crease entry to mitigate sympathetic nervous system fatigue.</li>
-    <li><strong>Tactical Telemetry:</strong> Elite two-run conversion frequency, turning routine defensive field placements into high-pressure chase momentum.</li>
+    <li><strong>Tactical Telemetry:</strong> Elite two-run conversion frequency, turning defensive field placements into high-pressure chase momentum.</li>
   </ul>
-  <p class="text-[11px] text-slate-400 mt-2 italic">Note: While popular sports commentary frequently compares elite international batsmen's recovery to endurance distance runners with resting bradycardia, official clinical electrocardiogram (ECG) data is held confidentially by national athletic medical boards.</p>
+  <p class="text-[11px] text-slate-400 mt-2 italic">Note: While popular commentary frequently compares elite international batsmen's recovery to distance runners with resting bradycardia, official clinical ECG and biometric files are kept strictly confidential by national athletic medical boards.</p>
 </div>
 HTML;
 
     $updatedTitle = "Virat Kohli Chase Blueprint: Cardiovascular Conditioning, Heart-Rate Control & Tactical Mastery";
     $updatedSummary = "How Virat Kohli's elite cardiovascular conditioning, Yo-Yo test benchmarks, and in-match heart-rate regulation power his historic white-ball run chases.";
 
-    // Strip any previous unverified draft numbers if present and inject the verified content
+    // Idempotency: Strip previous section if already present, ensuring clean single replacement
     $cleanExisting = preg_replace('/<h2>Cardiovascular Conditioning.*?<\/div>/s', '', $existingContent);
     $finalContent = $verifiedFitnessSection . "\n" . trim($cleanExisting);
 
     $stmtUpdateArt = $db->prepare("UPDATE articles SET title = ?, summary = ?, content = ? WHERE id = 69");
     $stmtUpdateArt->execute([$updatedTitle, $updatedSummary, $finalContent]);
+    echo "✓ Article ID 69 verified and enriched with source citations.\n";
 
     $db->commit();
-
-    $response = [
-        'status' => 'success',
-        'database' => $dbPath,
-        'backup_created' => $backupPath,
-        'devices_updated' => $totalDevicesUpdated,
-        'article_69_updated' => true,
-        'timestamp' => date('Y-m-d H:i:s')
-    ];
-
-    if ($isCli) {
-        echo json_encode($response, JSON_PRETTY_PRINT) . "\n";
-    } else {
-        echo json_encode($response);
-    }
+    echo "✓ Migration completed and transaction committed successfully.\n";
 
 } catch (Exception $e) {
-    if ($db->inTransaction()) {
+    if (isset($db) && $db->inTransaction()) {
         $db->rollBack();
     }
-    $err = 'Migration failed: ' . $e->getMessage();
-    if ($isCli) { fwrite(STDERR, "$err\n"); exit(1); }
-    echo json_encode(['status' => 'error', 'message' => $err]);
+    fwrite(STDERR, "✗ Migration failed: " . $e->getMessage() . "\n");
+    exit(1);
 }

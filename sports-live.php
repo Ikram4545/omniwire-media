@@ -50,8 +50,8 @@ $pageDesc = "Interactive match simulation, scorecard prototype, and sports cente
   <!-- LIVE SCORE TICKER STRIP -->
   <div class="bg-slate-950 border-b border-slate-800/80 overflow-x-auto scrollbar-none py-2.5">
     <div class="max-w-7xl mx-auto px-4 flex items-center gap-6 text-xs whitespace-nowrap">
-      <div class="flex items-center gap-2 text-rose-400 font-extrabold uppercase tracking-wider">
-        <span class="w-2 h-2 rounded-full bg-rose-500 live-dot"></span> Cricket:
+      <div class="flex items-center gap-2 text-amber-400 font-extrabold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-amber-500"></span> Cricket Replay:
       </div>
       <div class="flex items-center gap-2 text-slate-200">
         <span class="font-bold text-white">PAK 284/7 (50 ov)</span> vs <span class="font-bold text-emerald-400">RSA 142/3 (24.2 ov)</span>
@@ -63,7 +63,7 @@ $pageDesc = "Interactive match simulation, scorecard prototype, and sports cente
       </div>
       <div class="flex items-center gap-2 text-slate-200">
         <span class="font-bold text-white">Real Madrid 2</span> - <span class="font-bold text-amber-400">1 Barcelona</span>
-        <span class="px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-bold">78' LIVE</span>
+        <span class="px-1.5 py-0.5 rounded bg-amber-950 text-amber-400 text-[10px] font-bold">78' DEMO</span>
       </div>
     </div>
   </div>
@@ -170,7 +170,7 @@ $pageDesc = "Interactive match simulation, scorecard prototype, and sports cente
       <!-- LIVE BALL-BY-BALL COMMENTARY -->
       <div class="rounded-2xl bg-slate-900 border border-slate-800 p-6 shadow-xl">
         <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
-          <i data-lucide="radio" class="w-4 h-4 text-emerald-400"></i> Ball-by-Ball Live Commentary
+          <i data-lucide="radio" class="w-4 h-4 text-emerald-400"></i> Ball-by-Ball Match Commentary (Simulation Replay)
         </h2>
         <div class="space-y-4 text-xs divide-y divide-slate-800/60 font-sans">
           
@@ -251,7 +251,7 @@ $pageDesc = "Interactive match simulation, scorecard prototype, and sports cente
             <span class="text-slate-400 font-mono font-bold" id="rsa-pct">32%</span>
           </button>
         </div>
-        <p class="text-[10px] text-slate-500 mt-3 text-center">Over 4,280 fans have voted in this live match poll.</p>
+        <p class="text-[10px] text-slate-500 mt-3 text-center">Over 4,280 fans have voted in this interactive match poll.</p>
       </div>
 
       <!-- FOOTBALL CONCURRENT MATCHES -->
@@ -267,7 +267,7 @@ $pageDesc = "Interactive match simulation, scorecard prototype, and sports cente
             </div>
             <div class="text-right">
               <span class="font-mono font-bold text-emerald-400">2 - 1</span>
-              <div class="text-[10px] text-rose-400 font-bold">78' LIVE</div>
+              <div class="text-[10px] text-amber-400 font-bold">78' DEMO</div>
             </div>
           </div>
           <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
